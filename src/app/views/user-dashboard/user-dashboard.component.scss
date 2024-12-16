@@ -1,0 +1,44 @@
+.header__logo img{
+    height: 70px;
+    }/* Base Header Styles */
+    .header {
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        background-color: #fff; /* Ensure background color is set */
+        transition: all 0.3s ease; /* Smooth transition */
+      }
+      
+      .header__top {
+          background: #f7f7f7; /* Optional background for the top header */
+      }
+      
+      .header.scrolled {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow for distinction */
+        transition: all 0.3s ease;
+      }
+      
+      /* Adjust spacing when scrolled */
+      .header.scrolled .header__top {
+        display: none; /* Hide top section on scroll (optional) */
+      }
+      
+      .header.scrolled .header__nav__option {
+        padding: 10px 0; /* Reduce padding on scroll */
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 991.98px) {
+        .header {
+          position: static; /* For smaller screens, keep the header static */
+        }
+      
+        .header.scrolled {
+          position: fixed;
+        }
+      }
+      
