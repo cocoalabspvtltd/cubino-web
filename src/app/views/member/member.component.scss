@@ -1,0 +1,261 @@
+
+#section{
+    background: url('/assets/img/hotel8.jpg') ;
+background-size: cover;
+padding:5%;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50vh;
+   }
+  
+  /* Left Section */
+  .left-section {
+    position: relative;
+    flex: 1;
+    // background: url('/assets/img/hotel2.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 80vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.623);
+  }
+  
+  .content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color:#fff;
+  }
+  
+  .content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color:#fff;
+  }
+  
+  .help-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Right Section */
+  .right-section {
+    flex: 1;
+    background-color: rgba(49, 48, 48, 0.671);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .right-section h2 {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .phone-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .phone-group span {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .callback-link {
+    margin-top: 10px;
+    color: #ff4081;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .left-section,
+    .right-section {
+      flex: none;
+      width: 100%;
+    }
+  
+    .content h1 {
+      font-size: 20px;
+    }
+  
+    .content p {
+      font-size: 14px;
+    }
+  }
+
+
+.plans-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+ width:100%;
+    padding: 20px;
+    background-color: #000000;
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
+  
+  /* Plan Card */
+  .plan {
+    background-color: #f8f3f3e7;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    max-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .blue .badge {
+    background-color: #007bff;
+  }
+  
+  .silver .badge {
+    background-color: #ccc;
+    color: #222;
+  }
+  
+  .gold .badge {
+    background-color: #ffb400;
+    color: #222;
+  }
+  
+  .gold .gold {
+    background-color: green;
+    color: white;
+    font-size: 12px;
+  }
+  
+  /* Benefits List */
+  .benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    flex-grow: 1;
+  }
+  
+  .benefits li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .benefits li span {
+    color: #fca402;
+    margin-right: 10px;
+  }
+  
+  /* Buttons */
+  .cta {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .cta.blue-btn {
+    background-color: #949393;
+    color: white;
+  }
+  
+  .cta.silver-btn {
+    background-color:#949393;
+    color: #222;
+  }
+  
+  .cta.gold-btn {
+    background-color: #949393;
+    color: #222;
+  }
+  
+  .strike {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .plans-container {
+      flex-direction: column;
+    }
+  }

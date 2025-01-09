@@ -1,84 +1,74 @@
-
-    <div class="offcanvas-menu-wrapper" [class.active]="isMenuOpen">
-        <div class="offcanvas__close" (click)="toggleMenu()"  style="color: #fff; float: right; border-radius: 20px; border: 1px solid #fff; padding: 5px 10px; cursor: pointer;">✖</div>
-         <div class="offcanvas__logo">
-            <!-- <a routerLink=" "><img src="assets/img/logo.png" alt=""></a> -->
-        </div> 
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__btn__widget">
-            <a href="#">Login / Signup <span class="arrow_right"></span></a>
-        </div>
-        <div class="offcanvas__widget">
-            <ul>
-                <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-                <li><span class="icon_phone"></span> (123) 456-78-910</li>
-                <li><span class="icon_mail"></span>info&#64;cubino.com</li>
-            </ul>
-        </div>
-      
-        <!-- <div class="offcanvas__auth">
-            <ul>
-                <li><span class="icon_phone"></span> (123) 456-78-910</li>
-                <li><span class="icon_mail"></span>info&#64;cubino.com</li>
-            </ul>
-        </div> -->
+<div class="offcanvas-menu-wrapper" [class.active]="isMenuOpen">
+    <div class="offcanvas__close" (click)="toggleMenu()" style="color: #fff; float: right; border-radius: 20px; border: 1px solid #fff; padding: 5px 10px; cursor: pointer;">✖</div>
+    <div class="offcanvas__logo">
+        <!-- <a routerLink=" "><img src="assets/img/logo.png" alt=""></a> -->
+    </div> 
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__btn__widget" style="margin: 20px 0; text-align: center;">
+        <a routerLink="/login" class="btn btn-primary">
+            <i class="fa fa-sign-in-alt"></i> Login
+        </a>
+        <a routerLink="/register" class="btn btn-success">
+            <i class="fa fa-user-plus"></i> Signup
+        </a>
     </div>
-    <!-- Offcanvas Menu End -->
+    <div class="offcanvas__widget">
+        <ul>
+            <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
+            <li><span class="icon_phone"></span> (123) 456-78-910</li>
+            <li><span class="icon_mail"></span>info&#64;cubino.com</li>
+        </ul>
+    </div>
+</div>
+<!-- Offcanvas Menu End -->
 
-    <!-- Header Section Begin -->
-    <header class="header" [class.scrolled]="isScrolled">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="header__top__widget">
-                            <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-                            <li><span class="icon_phone"></span> (123) 456-78-910</li>
-                            <li><span class="icon_mail"></span>info&#64;cubino.com</li>
-                        </ul>
-                    </div>
-                    <!-- <div class="col-lg-6">
-                        <div class="header__top__right">
-                            <div class="header__top__auth">
-                                <ul>
-                                   
-                                   
-                                </ul>
-                            </div>
-                            
-                        </div>
-                    </div> -->
+<!-- Header Section Begin -->
+<header class="header" [class.scrolled]="isScrolled">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="header__top__widget">
+                        <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
+                        <li><span class="icon_phone"></span> (123) 456-78-910</li>
+                        <li><span class="icon_mail"></span>info&#64;cubino.com</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="header__nav__option">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="header__logo">
-                            <a routerLink=""><img src="assets/img/logo.png" alt=" "></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="header__nav">
-                            <nav class="header__menu">
-                                <ul class="menu__class">
-                                    <li><a href="./index.html">Become a Member</a></li>
-                                    <li><a href="./rooms.html">Cubino for Business</a></li>
-                                    <li><a href="./about.html">List Your Property</a></li>                                   
-                                </ul>
-                            </nav>
-                            <div class="header__nav__widget">
-                                <a href="#">Login / Signup <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
+    </div>
+    <div class="header__nav__option">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="header__logo">
+                        <a routerLink=""><img src="assets/img/logo1.jpg" alt=" "></a>
                     </div>
                 </div>
-                <div class="canvas__open" (click)="toggleMenu()">
-                    <span class="fa fa-bars"></span>
+                <div class="col-md-10">
+                    <div class="header__nav">
+                        <nav class="header__menu">
+                            <ul class="menu__class">
+                                <li><a routerLink="/member">Become a Member</a></li>
+                                <li><a routerLink="/corporate">Cubino for Business</a></li>
+                                <li><a routerLink="/property">List Your Property</a></li>                                   
+                            </ul>
+                        </nav>
+                        <div class="header__nav__widget">
+                            <a routerLink="/login" class="btn btn-primary">
+                                <i class="fa fa-sign-in-alt"></i> Login
+                            </a>
+                            <a routerLink="/register" class="btn btn-success">
+                                <i class="fa fa-user-plus"></i> Signup
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="canvas__open" (click)="toggleMenu()">
+                <span class="fa fa-bars"></span>
+            </div>
         </div>
-    </header>
-    <!-- Header Section End -->
-     
+    </div>
+</header>
+<!-- Header Section End -->

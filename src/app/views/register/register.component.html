@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<section id="section">
+    <div class="container">
+        <!-- Left Section with Background -->
+        <div class="left-section">
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Welcome to Cubino <br>
+                 Your Gateway to Seamless Hotel Bookings!</h1>
+            <p>Manage your bookings effortlessly with Cubino. Streamline check-ins, track reservations, and ensure a smooth stay for every guest—all in one place.</p>
+            <button class="help-button" routerLink="/contact">Need help? Connect with your dedicated support manager</button>
+          </div>
+        </div>
+    
+        <!-- Right Section with Form -->
+        <div class="right-section">
+          <h2>Sign Up</h2>
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <input type="text" formControlName="name" placeholder="Name" required>
+            <div *ngIf="signUpForm.controls['name'].invalid && signUpForm.controls['name'].touched" class="error-message">
+              Name is required and must be at least 3 characters long.
+            </div>
+              
+            <input type="email" formControlName="email" placeholder="Email ID" required>
+            <div *ngIf="signUpForm.controls['email'].invalid && signUpForm.controls['email'].touched" class="error-message">
+              Enter a valid email.
+            </div>
+    
+                         <div class="phone-group">
+                <!-- Country Code Dropdown -->
+                 <span>
+                  <select formControlName="selectedCountryCode">
+                    <option *ngFor="let country of countries" [value]="country.code">
+                      {{ country.name }} ({{ country.code }})
+                    </option>
+                  </select>
+              </span>
+                            
+              <input type="tel" formControlName="mobile" placeholder="Mobile" required>
+              
+            </div>
+            <div *ngIf="signUpForm.controls['mobile'].invalid && signUpForm.controls['mobile'].touched" class="error-message">
+              Enter a valid mobile number.
+            </div>
+            <button type="submit" class="submit-btn" [disabled]="signUpForm.invalid">Register Now</button>
+          </form>
+          <!-- <a href="#" class="callback-link">Request Call Back</a> -->
+           <br>
+          @if (this.msg) {
+            <div  class="alert alert-success" role="alert">
+               <p >{{this.msg}}</p>
+             </div>
+           }
+           @if (this.errorMsg){
+             <div class="alert alert-danger" role="alert">
+               <p >{{this.errorMsg}}</p>
+             </div>
+           }
+        </div>
+      </div>
+</section>
+
+  <app-footer></app-footer>

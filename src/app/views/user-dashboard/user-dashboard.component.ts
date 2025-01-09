@@ -9,6 +9,8 @@ export class UserDashboardComponent {
   isScrolled = false; // Tracks the scroll state
   isMenuOpen = false; // Tracks the state of the mobile menu
 
+  isUserDropdownOpen: boolean = false;
+
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen; // Toggles the menu state
     console.log( this.isMenuOpen)
@@ -22,5 +24,9 @@ export class UserDashboardComponent {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
     this.isScrolled = scrollPosition > 50; // Add "scrolled" class after scrolling 50px
   }
+toggleUserDropdown(): void {
+    this.isUserDropdownOpen = !this.isUserDropdownOpen;
+}
+
 }
 

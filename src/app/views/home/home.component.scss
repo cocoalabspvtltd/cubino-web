@@ -1,0 +1,249 @@
+#section {
+  background: url('/assets/img/slider1.jpg');
+  background-size: cover;
+  padding: 5%;
+  position: relative;
+  z-index: 1;
+}
+
+#section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity value (0.0 - 1.0) */
+  z-index: -1; /* Keep it behind the content */
+}
+
+.hero__text {
+  color: #fff; /* Ensure text is readable over the semi-transparent background */
+  position: relative; /* Keeps text above the overlay */
+}
+
+  nav{
+    display: block;
+    background-color: #969696;
+    padding:10px;
+ }
+  #mainnav {
+    display: flex;
+    justify-content: center; /* Centers the entire navigation */
+    align-items: center;    /* Aligns vertically */
+    text-align: center;
+}
+
+#mainnav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+   
+}
+#mainnav > ul > li {
+    display: inline-block;
+    padding: 5px 5px;
+    margin-left: 10px;
+    
+}
+#mainnav ul li {
+    position: relative;
+}
+.header #mainnav > ul > li > a {
+    line-height: 100px;
+}
+#mainnav > ul > li.home > a {
+    color: #f3f0ec;
+}
+#mainnav > ul > li > a {
+    position: relative;
+    display: block;
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    color: #222;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 15px;
+    font-weight: 600;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#mainnav ul.submenu {
+    position: absolute;
+    left: 0;
+    top: 150%;
+    width: 300px;
+    text-align: left;
+    background-color: #222222;
+    z-index: 9999;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#mainnav ul.submenu li:first-child {
+    border-top: none;
+}
+#mainnav ul.submenu > li {
+    border-top: 1px solid #333333;
+}
+#mainnav ul li ul li {
+    margin-left: 0;
+}
+#mainnav ul.submenu > li > a {
+    display: block;
+    color: #cacaca;
+    text-decoration: none;
+    padding: 0 0 0 20px;
+    line-height: 45px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#mainnav ul li:hover > ul.submenu {
+    top: 100%;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+    visibility: visible;
+}
+@media (max-width: 768px) {
+  #mainnav {
+      display: none;  /* Hide nav by default on mobile */
+      flex-direction: column;
+  }
+}
+
+
+//   .scrollable-container {
+//     overflow-x: auto;
+//     display: flex;
+//     padding: 1rem 0;
+//     background-color: rgb(204, 158, 102);
+//     justify-content: center;  /* Center horizontally */
+//     align-items: center;      /* Center vertically (if height is set) */
+//      position: relative;
+//   }
+  
+//   .scrollable-content {
+//     display: flex;
+//     gap: 1rem;
+//     justify-content: center;  /* Centers the items horizontally within the content area */
+//   }
+  
+//   .state-card {
+//     min-width: 150px;
+//     padding: 1rem;
+//     text-align: center;
+//     background: #fff5f5;
+//     border-radius: 8px;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;   /* Ensures the content inside the state-card is centered */
+//   }
+  
+//   .state-card h3 {
+//     font-size: 14px;
+//     margin: 0; /* Optional, to remove default margin */
+//   }
+  
+//   .state-card {
+//     position: relative;
+//   }
+  
+//   .city-list {
+//     display: none;
+//     position: absolute;
+//     top: 100%;
+//     left: 0;
+//     background-color: #fff;
+//     border: 1px solid #ccc;
+//     width: 200px;
+//     max-height: 150px;
+//     overflow-y: auto;
+//   }
+  
+//   .state-card:hover .city-list {
+//     display: block;
+//   }
+.scrollable-container {
+  overflow-x: auto;
+  display: flex;
+  padding: 1rem 0;
+  background-color: rgb(204, 158, 102);
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (if height is set) */
+  position: relative;
+}
+
+.scrollable-content {
+  display: flex;
+  gap: 1rem;
+  justify-content: center; /* Centers the items horizontally within the content area */
+}
+
+.state-card {
+  min-width: 150px;
+  padding: 1rem;
+  text-align: center;
+  background: #504f4f;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Ensures the content inside the state-card is centered */
+  position: relative; /* Ensures the city list is positioned relative to this card */
+  cursor: pointer;
+}
+
+.state-card h3 {
+  font-size: 14px;
+  margin: 0; /* Optional, to remove default margin */
+}
+
+.city-list {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px); /* Add some space below the state card */
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensures the list is above other elements */
+}
+
+.state-card:hover .city-list {
+  display: block;
+}
+
+.city-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.city-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.city-list li:hover {
+  background-color: #f5f5f5;
+}

@@ -1,0 +1,235 @@
+/* Make sure the header is fixed at the top */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's above other content */
+    transition: top 0.3s ease; /* Smooth transition for hide/show */
+}
+
+/* Hide the header on scroll */
+.header.scrolled {
+    top: -100px; /* Adjust this value according to the header height */
+}
+
+/* Content below the header should have padding to prevent overlap */
+.main-content {
+    padding-top: 100px; /* Ensure this is equal to or greater than the header height */
+    transition: padding-top 0.3s ease;
+}
+
+/* Header styles when not scrolled */
+.header__logo img {
+    max-height: 60px;
+    object-fit: contain;
+}
+
+/* If you want to style the header further, add other properties here */
+
+
+/* Logo size */
+.header__logo img {
+    max-height: 60px;
+    object-fit: contain;
+}
+
+/* Main nav container */
+.header__nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Search form styling */
+.search-box {
+    margin-top: 0px;
+    background-color: rgb(7, 7, 7);
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Header fixed on scroll */
+.header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow for distinction */
+    transition: all 0.3s ease;
+}
+
+/* Adjust spacing when scrolled */
+.header.scrolled .header__top {
+    display: none; /* Hide top section on scroll (optional) */
+}
+
+.header.scrolled .header__nav__option {
+    padding: 10px 0; /* Reduce padding on scroll */
+}
+
+/* Responsive design for small screens */
+@media (max-width: 991.98px) {
+    .header__nav__option {
+        padding: 10px 0;
+    }
+
+    /* For smaller screens, keep header static initially, then fixed on scroll */
+    .header.scrolled {
+        position: fixed;
+    }
+
+    /* Search form adjustments */
+    .search-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-control {
+        width: 100%; /* Full width for input fields on small screens */
+    }
+
+    .btn {
+        width: 100%; /* Full width for buttons on small screens */
+    }
+
+    .header__nav {
+        justify-content: space-between;
+    }
+
+    /* Offcanvas menu toggle button */
+    .canvas__open {
+        display: block;
+        cursor: pointer;
+    }
+
+    .header__menu {
+        display: none; /* Hide the menu on smaller screens by default */
+    }
+
+    .offcanvas-menu-wrapper.active {
+        display: block; /* Show off-canvas menu when active */
+    }
+}
+
+/* For even smaller screens (mobile) */
+@media (max-width: 576px) {
+    .header__logo img {
+        max-height: 50px; /* Smaller logo for mobile */
+    }
+
+    .header__nav__widget {
+        display: none; /* Hide the login and sign-up buttons */
+    }
+
+    .header__nav {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .offcanvas__btn__widget a {
+        width: 100%;
+    }
+
+    .offcanvas__widget ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .offcanvas__widget li {
+        margin-bottom: 15px;
+    }
+}
+
+/* Button and form styling */
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+}
+
+.header.scrolled ~ .main-content {
+    padding-top: 70px; /* Adjust this value based on your header's height */
+}
+
+.btn-primary {
+    background-color: #585858;
+    color: #fff;
+    border: 1px solid #484949;
+    margin-right: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #585858;
+    border-color: #585858;
+    color: #fff;
+}
+
+.btn-success {
+    background-color: #E6A405;
+    color: #fff;
+    border: 1px solid #E6A405;
+}
+
+.btn-success:hover {
+    background-color: #E6A405;
+    border-color: #E6A405;
+    color: #fff;
+}
+
+/* Form styling */
+.search-form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    width: auto;
+}
+
+.search-form input,
+.search-form select {
+    width: 180px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.search-form input[type="date"] {
+    padding: 3px 8px;
+}
+
+.search-form select {
+    height: auto;
+    background-color: #fff;
+}
+
+.search-form .form-group label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}

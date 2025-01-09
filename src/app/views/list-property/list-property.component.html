@@ -1,1 +1,24 @@
-<p>list-property works!</p>
+<app-header></app-header>
+<div class="popup-overlay">
+    <div class="popup-container">
+      
+      <h2>Get Associated with Cubino</h2>
+      <hr class="popup-divider" />
+      <form onsubmit="handleFormSubmit(event)">
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter Name"
+          required
+        />
+        <input
+          type="tel"
+          id="phone"
+          placeholder=" Enter Phone number "
+          required
+        />
+        <button type="submit" class="submit-btn">Request a Call</button>
+      </form>
+    </div>
+  </div>
+  <app-footer></app-footer>

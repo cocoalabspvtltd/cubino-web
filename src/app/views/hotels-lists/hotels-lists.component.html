@@ -1,0 +1,224 @@
+<app-header1></app-header1>
+    <section class="hotel-container">
+        <!-- Left Column: Filters Section -->
+         
+        <div class="left-column">
+          <div class="filters">
+            <h3>Filters</h3>
+            <div class="filter-category">
+              <h4>Popular locations in Bangalore</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="koramangala" />
+                  <label for="koramangala">Koramangala</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="indiranagar" />
+                  <label for="indiranagar">Indiranagar</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="hr-layout" />
+                  <label for="hr-layout">HR Layout</label>
+                </li>
+              </ul>
+            </div>
+            <div class="price-filter">
+              <h4>Price</h4>
+              <input type="range" min="0" max="2000" id="priceRange" />
+              <label for="priceRange">₹461 - ₹2004</label>
+            </div>
+            <div class="collections">
+              <h4>Collections</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="family" />
+                  <label for="family">Family OYO</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="couple" />
+                  <label for="couple">Couple Friendly</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="business" />
+                  <label for="business">For Business</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      
+      <!-- Right Column: Hotel Results Section -->
+      <div class="right-column">
+          <div class="hotel-results">
+            <div class="row">
+              <p class="hotel-title">Hotels in {{ city?.name }}</p>
+              <hr>
+            </div>
+        
+        <!-- Check if hotels data is available -->
+      <div *ngIf="hotels?.length > 0; else noHotelsFound" class="hotel-cards">
+          <div *ngFor="let hotel of hotels" class="row hotel-card">
+            <div class="col-md-4">
+              <div class="hotel-img">
+                <img
+                  [src]="hotel.room_image || 'assets/img/hotel6.jpg'"
+                  [alt]="hotel.hotel_name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="hotel-info">
+                <h5 class="hotel-name">{{ hotel.hotel_name }}</h5>
+                <p class="hotel-address">{{ hotel.hotel_address }}</p>
+                <p class="price">
+                  <span class="price-value">{{ hotel.price || 'Price not available' }}</span>
+                </p>
+                <p class="rating">
+                  Rating: {{ hotel.rating || 'Not rated' }} ⭐
+                </p>
+              </div>
+            </div>
+            <div class="col-md-2 text-center">
+              <button class="btn view-details" (click)="viewDetails(hotel)">
+                View Details
+              </button>
+              <button class="btn book-now" (click)="bookNow(hotel)">
+                Book Now
+              </button>
+            </div>
+            <!-- Horizontal line -->
+            <hr
+              style="
+                border:1px solid rgb(223, 220, 220);
+                width: 90%;
+                margin: 10px auto;
+              "
+            />
+          </div>
+        </div>
+        <div *ngIf="hotels?.length > 0; else noHotelsFound" class="hotel-cards">
+          <div *ngFor="let hotel of hotels" class="row hotel-card">
+            <div class="col-md-4">
+              <div class="hotel-img">
+                <img
+                  [src]="hotel.room_image || 'assets/img/hotel6.jpg'"
+                  [alt]="hotel.hotel_name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="hotel-info">
+                <h5 class="hotel-name">{{ hotel.hotel_name }}</h5>
+                <p class="hotel-address">{{ hotel.hotel_address }}</p>
+                <p class="price">
+                  <span class="price-value">{{ hotel.price || 'Price not available' }}</span>
+                </p>
+                <p class="rating">
+                  Rating: {{ hotel.rating || 'Not rated' }} ⭐
+                </p>
+              </div>
+            </div>
+            <div class="col-md-2 text-center">
+              <button class="btn view-details" (click)="viewDetails(hotel)">
+                View Details
+              </button>
+              <button class="btn book-now" (click)="bookNow(hotel)">
+                Book Now
+              </button>
+            </div>
+            <!-- Horizontal line -->
+            <hr
+              style="
+                border:1px solid rgb(223, 220, 220);
+                width: 90%;
+                margin: 10px auto;
+              "
+            />
+          </div>
+        </div>
+        <div *ngIf="hotels?.length > 0; else noHotelsFound" class="hotel-cards">
+          <div *ngFor="let hotel of hotels" class="row hotel-card">
+            <div class="col-md-4">
+              <div class="hotel-img">
+                <img
+                  [src]="hotel.room_image || 'assets/img/hotel6.jpg'"
+                  [alt]="hotel.hotel_name"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="hotel-info">
+                <h5 class="hotel-name">{{ hotel.hotel_name }}</h5>
+                <p class="hotel-address">{{ hotel.hotel_address }}</p>
+                <p class="price">
+                  <span class="price-value">{{ hotel.price || 'Price not available' }}</span>
+                </p>
+                <p class="rating">
+                  Rating: {{ hotel.rating || 'Not rated' }} ⭐
+                </p>
+              </div>
+            </div>
+            <div class="col-md-2 text-center">
+              <button class="btn view-details" (click)="viewDetails(hotel)">
+                View Details
+              </button>
+              <button class="btn book-now" (click)="bookNow(hotel)">
+                Book Now
+              </button>
+            </div>
+            <!-- Horizontal line -->
+            <hr
+              style="
+                border:1px solid rgb(223, 220, 220);
+                width: 90%;
+                margin: 10px auto;
+              "
+            />
+          </div>
+        </div>
+        <!-- No hotels found template -->
+        <ng-template #noHotelsFound>
+          <p class="text-center">No hotels found.</p>
+        </ng-template>
+        
+            <!-- If no hotels are found -->
+            <ng-template #noHotelsFound>
+              <div class="no-hotels">
+                <p>No hotels found in {{ city?.name || 'the selected location' }}.</p>
+              </div>
+            </ng-template>
+        
+            @if(hotels>10){
+              <div class="pagination">
+                  <ul class="pagination-list">
+                    <li>
+                      <button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+                        Previous
+                      </button>
+                    </li>
+                    <li *ngFor="let page of pages" [class.active]="page === currentPage">
+                      <button (click)="goToPage(page)">{{ page }}</button>
+                    </li>
+                    <li>
+                      <button
+                        [disabled]="currentPage === totalPages"
+                        (click)="goToPage(currentPage + 1)"
+                      >
+                        Next
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+            }
+            <!-- Pagination -->
+         
+          </div>
+        </div>
+        
+        
+      </section>
+
+

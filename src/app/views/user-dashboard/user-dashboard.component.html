@@ -2,15 +2,25 @@
 <div class="offcanvas-menu-wrapper" [class.active]="isMenuOpen">
     <div class="offcanvas__close" (click)="toggleMenu()"  style="color: #fff; float: right; border-radius: 20px; border: 1px solid #fff; padding: 5px 10px; cursor: pointer;">✖</div>
      <div class="offcanvas__logo">
-        <!-- <a routerLink=" "><img src="assets/img/logo.png" alt=""></a> -->
+       <a routerLink=" "><img src="assets/img/logo.png" alt=""></a>
     </div> 
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__btn__widget">
-        <a href="#">Login / Signup <span class="arrow_right"></span></a>
+        
     </div>
     <div class="offcanvas__widget">
-        <ul>
-            <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
+        <ul class="menu__class1">
+            <li id="a1"><a  href="./index.html">Become a Member</a></li>
+            <li id="a1"><a href="./rooms.html">Cubino for Business</a></li>
+            <li id="a1"><a  href="./about.html">List Your Property</a></li> 
+            <br>
+            <li id="a1"><a  href="./index.html">Profile</a></li>    
+            <li id="a1"><a routerLink="/my-booking">My Booking</a></li>
+            <li id="a1"><a routerLink="/cancellations">Cancellations</a></li>                              
+        </ul>
+        <ul style="margin-top: 200px;">
+            
+            <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437,<br> NY, US</li>
             <li><span class="icon_phone"></span> (123) 456-78-910</li>
             <li><span class="icon_mail"></span>info&#64;cubino.com</li>
         </ul>
@@ -57,8 +67,20 @@
                                 <li><a href="./about.html">List Your Property</a></li>                                   
                             </ul>
                         </nav>
-                        <div class="header__nav__widget">
-                            <a href="#">Logout<span class="arrow_right"></span></a>
+                        <div class="header__nav__widget">               
+                                <div class="user-dropdown">
+                                    <div class="user-icon" (click)="toggleUserDropdown()">
+                                        <img src="assets/img/user1.png" alt="User"  />
+                                    </div>
+                                    <ul class="dropdown-menu" [class.show]="isUserDropdownOpen">
+                                        <li><a routerLink="/profile">Profile</a></li>
+                                        <li><a routerLink="/my-booking">My Booking</a></li>
+                                        <li><a routerLink="/cancellations">Cancellations</a></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -67,10 +89,10 @@
                 <span class="fa fa-bars"></span>
             </div>
         </div>
-    </div>
+  
 </header>
 <!-- Header Section End -->
- <section>
+ <section id="section">
         <router-outlet />
  </section>
 

@@ -7,7 +7,7 @@
   }
   
   body {
-    background-color: #f4f4f4;
+    background-color: #9e9b9b;
     padding: 20px;
   }
   
@@ -20,7 +20,7 @@
   /* Filter Section */
   .filters {
     width: 25%;
-    background-color: #fff;
+    background-color: #b3b3b3;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -59,7 +59,7 @@
   
   .price-filter label {
     font-size: 1rem;
-    color: #888;
+    color: #ffffff;
   }
   
   /* Hotel Listing Section */
@@ -79,24 +79,31 @@
  .hotel-img img {
     width: 100%;
     border-radius: 8px 8px 0 0;
-    height: 200px;
+    height: 250px;
     object-fit: cover; padding: 20px;;
     
   }
    .hotel-info {
     padding: 25px;
+    color: #f3eded;
   }
   
-  .hotel-card h5 {
+  .hotel-info  h5 {
     font-size: 1.3rem;
+    color: #f3eded;
     margin-bottom: 10px;
   }
   
-  .hotel-card p {
-    color: #555;
+  .hotel-info  p {
+    color: #c4c2c2;
     font-size: 1rem;
   }
-  
+  .hotel-info ul li{
+    color: #c9c6c6;
+  }
+  .hotel-info i{
+    color: #c9c6c6;
+  }
   .price {
     font-size: 1.2rem;
     font-weight: bold;
@@ -123,7 +130,7 @@
   }
   
   .amenities i {
-    color: #28a745;
+    color: #ecc205;
     margin-right: 5px;
   }
   

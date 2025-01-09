@@ -1,53 +1,96 @@
 <app-header></app-header>
-    <!-- Hero Section Begin -->
-    <section class="hero spad set-bg" data-setbg=" assets/img/slider1.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="hero__text">
-                        <h5>WELCOME CUBINO</h5>
-                        <h2>Experience the greatest for you holidays.</h2>
-                    </div>
-                    <form action="#" class="filter__form">
-                        <div class="filter__form__item filter__form__item--search">
-                            <p>Location</p>
-                            <div class="filter__form__input">
-                                <input type="text" placeholder="Search Location">
-                                <span class="icon_search"></span>
-                            </div>
-                        </div>
-                        <div class="filter__form__item">
-                            <p>Check In</p>
-                            <div class="filter__form__datepicker">
-                                <span class="icon_calendar"></span>
-                                <input type="text" class="datepicker_pop check__in" placeholder="Check In">
-                                <i class="arrow_carrot-down"></i>
-                            </div>
-                        </div>
-                        <div class="filter__form__item">
-                            <p>Check Out</p>
-                            <div class="filter__form__datepicker">
-                                <span class="icon_calendar"></span>
-                                <input type="text" class="datepicker_pop check__out">
-                                <i class="arrow_carrot-down"></i>
-                            </div>
-                        </div>
-                        <div class="filter__form__item filter__form__item--select">
-                            <p>Person</p>
-                            <div class="filter__form__select">
-                                <span class="icon_group"></span>
-                                <select>
-                                    <option value="">2 Adult, 1 Children</option>
-                                    <option value="">2 Adult</option>
-                                    <option value="">1 Adult</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit">BOOK NOW</button>
-                    </form>
-                </div>
+<!-- Hero Section Begin -->
+<!-- 
+    
+    <div class="scrollable-content">
+        <div 
+            class="state-card" 
+            *ngFor="let state of states | slice:0:10" 
+            (mouseenter)="subcity(state.id)" 
+            (mouseleave)="hideCities(state.id)"
+        >
+            <h3>{{ state.name }}</h3>
+            
+            <!-- Display the city list only for the hovered state --
+            <div 
+                *ngIf="cities[state.id]" 
+                class="city-list"
+            >
+                <ul>
+                    <li *ngFor="let subCity of cities[state.id]">
+                        {{ subCity }}
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
-    <!-- Hero Section End -->
+    </div> -->
+
+
+
+<nav id="mainnav" class="mainnav">
+    <ul class="menu">
+        <li class="home state-card" 
+            *ngFor="let state of states | slice:0:5" 
+            (mouseenter)="subcity(state.id)" 
+            (mouseleave)="hideCities(state.id)">
+            <a (click)="state_search(state)">{{ state.name }}</a>
+            <ul class="submenu">
+                <li *ngFor="let subCity of cities[state.id]">
+                    <a (click)="state_city(subCity)">{{ subCity }}</a>
+                </li>
+            </ul>
+        </li>
+        <li class="home state-card">
+            <a routerLink="Cities">All Cities</a>
+        </li>
+    </ul>
+</nav>
+
+
+<section class="hero spad set-bg" id="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hero__text">
+                    <h5>WELCOME CUBINO</h5>
+                    <h2>Experience the greatest for you holidays.</h2>
+                </div>
+                <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="filter__form">
+                    <div class="filter__form__item filter__form__item--search">
+                        <p>Location</p>
+                        <div class="filter__form__input">
+                            <input matInput formControlName="location" placeholder="Search Location" />
+                            <span class="icon_search"></span>
+                        </div>
+                    </div>
+                    <div class="filter__form__item">
+                        <p>Check In</p>
+                        <div class="filter__form__input">                              
+                            <input type="date" formControlName="checkIn" placeholder="Check In" />                               
+                        </div>
+                    </div>
+                    <div class="filter__form__item">
+                        <p>Check Out</p>
+                        <div class="filter__form__input">                              
+                            <input type="date" formControlName="checkOut" placeholder="Check Out" />
+                        </div>
+                    </div>
+                    <div class="filter__form__item filter__form__item--select">
+                        <p>Person</p>
+                        <div class="filter__form__select">
+                            <span class="icon_group"></span>
+                            <mat-select formControlName="person">
+                                <mat-option value="2 Adult, 1 Children">2 Adult, 1 Children</mat-option>
+                                <mat-option value="2 Adult">2 Adult</mat-option>
+                                <mat-option value="1 Adult">1 Adult</mat-option>
+                            </mat-select>
+                        </div>
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
 <app-footer></app-footer>
