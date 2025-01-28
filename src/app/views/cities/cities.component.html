@@ -1,0 +1,28 @@
+<app-header1></app-header1>
+<section>
+    <div class="container">
+        <h5>All Cities</h5>
+        <div class="row">
+          <div *ngFor="let state of states |orderBy 'name'" class="col-md-4 col-sm-6 col-12">
+            <div class="state-card">
+              <h3>{{ state.name }}</h3>
+              <!-- Display cities for the current state -->
+              <div *ngIf="cities[state.id] && cities[state.id].length > 0">
+                <ul class="submenu">
+                    <li *ngFor="let subCity of cities[state.id]">
+                        <a>{{ subCity }}</a>
+                    </li>
+                </ul>
+                <div *ngFor="let city of cities[state.id]" class="city">
+                  <h4>{{ city.name }}</h4>   
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+</section>
+<app-footer></app-footer>

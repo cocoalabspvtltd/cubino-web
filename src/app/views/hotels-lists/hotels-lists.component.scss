@@ -1,5 +1,12 @@
-section{
-    height: 100%;
+// 
+
+
+
+
+.container{
+  padding: 10px;
+  height: auto;
+
 }
   
   h3, h4, h5 {
@@ -9,9 +16,9 @@ section{
   .hotel-container {
     display: flex;
     gap: 20px;
-    padding: 20px;
-    max-width: 100%;
-    margin-top:100px;
+    padding: 0px;
+    width: 100%;
+    margin-top:10px;
   }
   
   .left-column {
@@ -21,7 +28,12 @@ section{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+  .card{    
+    margin-top: 10px;
+    padding: 10px;;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border-radius: 8px;
+  }
   .filters h3, .filters h4 {
     margin: 10px 0;
     border-bottom: 2px solid #007bff;
@@ -55,33 +67,48 @@ section{
   }
   
   .right-column {
-    flex: 3 1 75%;
+    // flex: 3 1 75%;
     background: #fff;
     border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    //padding: 15px;
+    //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .hotel-cards {
+     
     margin-bottom: 20px;
     // border: 1px solid #ddd;
     border-radius: 8px;
     background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .hotel-cards .row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
     border: none;;
   }
   
+  .hotel-cards .hotel-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the container has height for centering */
+  }
+  
   .hotel-cards .hotel-img img {
-    width: 100%;
+    width: 80%;
     border-radius: 5px;
     transition: transform 0.3s ease;
+    display: block; /* Remove any inline block space */
+    margin: 0 auto; /* Horizontally center the image */
+  }
+  
+  /* Optional: Adding hover effect to zoom in */
+  .hotel-cards .hotel-img img:hover {
+    transform: scale(1.1);
   }
   
   .hotel-cards .hotel-img img:hover {
@@ -238,10 +265,13 @@ section{
       flex-direction: column;
     }
   }
+  .hotel-results{
+    padding:10px;
+  }
   .hotel-title {
     font-size: 1.5rem;
     font-weight: bold;
-    padding-left:10px;
+    padding:15px;
     color:#141313;
   }
   
@@ -295,18 +325,231 @@ section{
     background-color: #0056b3;
   }
   .hotel-cards .view-details{
-    background-color: #b8b7b5;
+    background-color: #f7c35d;
     border: #141313;
     color: #141313;
   }
   .hotel-cards .book-now{
-    background-color: #181207;
+    background-color: #010504;
   }
   .hotel-cards .view-details:hover{
-    background-color:  #141313;
-    color: #b8b7b5;
+    background-color: #b8b7b5;
+    color:  #010504;
   }
   .hotel-cards .book-now:hover{
     background-color: #b8b7b5;
-    color:  #141313;
+    color:  #010504;
   }
+  #row{
+    background-color: #e2e2e2;
+    padding:10px;
+    
+    .inline-form {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .form-control-inline {
+      display: inline-block;
+      width: auto;
+      margin-right: 5px;
+      padding: 5px;
+    }
+    
+    button[type="submit"] {
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+    
+    select, input {
+      width: 150px; /* Adjust width as necessary */
+      padding: 5px;
+    }
+    
+    .btn {
+      padding: 10px 15px;
+    }
+
+  }
+  // .search-box {
+  //   padding: 0px; 
+  // }
+  
+  // .inline-form {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   gap: 15px;
+  // }
+  
+  // .inline-form .form-group {
+  //   display: flex;
+  //   flex-direction: column; /* Ensures the label is on top */
+  // }
+  
+  // .inline-form .form-label {
+  //   font-weight: 500; /* Slightly bold for better visibility */
+  //   margin-bottom: 5px; /* Space between label and input */
+  // }
+  
+  // .inline-form .form-control,
+  // .inline-form .btn {
+  //   width: 100%; /* Full width on smaller devices */
+  // }
+  
+  // @media (min-width: 992px) {
+  //   .inline-form .form-control,
+  //   .inline-form .btn {
+  //     width: auto; /* Inline layout for larger screens */
+  //   }
+  // }
+
+  
+  
+.search-box {
+  // padding-right: 10px;
+  //border: 1px solid rgb(14, 12, 12);
+  // padding:10px;
+  background-color: #b3c5cc;
+  
+}
+.pagination-container {
+  text-align: center;
+  margin-top: 20px; /* Optional */
+}
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px;
+}
+
+.inline-form .form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.inline-form .form-label {
+  font-weight: 400;
+  color: #020202;
+  font-size: 14px;
+  text-align: left;
+}
+
+.inline-form .form-control,
+.inline-form .btn {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .inline-form .form-control,
+  .inline-form .btn {
+      width: auto;
+  }
+}
+
+.loader {
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #0f151a; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}/* Container for fixed positioning */
+
+
+/* Search Box */
+.search-box {
+  width: 100%; /* Take up the full container width */
+ // max-width: 1200px; /* Restrict to a maximum width */
+  padding: 10px; /* Inner padding for spacing */
+  margin: auto; /* Center it horizontally */
+  background: #fffefe; /* Background for visibility */
+  z-index: 9999; /* Ensure it's above other elements */
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for better visuals */
+
+}
+
+/* Form Fields */
+.inline-form .form-group {
+
+  margin-bottom: 15px; /* Space between form fields */
+}
+
+/* Submit Button */
+button[type="submit"] {
+  display: block;
+  width: 100%; /* Make button full-width on smaller screens */
+  padding: 10px; /* Add padding for a larger touch area */
+  font-size: 16px; /* Slightly larger font for better usability */
+  border: none; /* Remove default borders */
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container-fluid {
+    top: 100px; /* Adjust top position for smaller screens */
+    padding: 10px; /* Reduce padding */
+    width: 95%; /* Reduce width for smaller screens */
+  }
+
+  .inline-form .form-group {
+    width: 100%; /* Stack form fields vertically */
+    margin-bottom: 10px; /* Reduce spacing between fields */
+  }
+
+  button[type="submit"] {
+    font-size: 14px; /* Slightly smaller font for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .container-fluid {
+    top: 80px; /* Adjust top position for very small screens */
+    padding: 8px; /* Further reduce padding */
+  }
+
+  button[type="submit"] {
+    font-size: 12px; /* Even smaller font for very small screens */
+    padding: 8px; /* Smaller padding for touch devices */
+  }
+}
+#section{
+  margin-top: 0px;
+}
+.navbar-fixed-top {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+/*     z-index: 1; */
+background: white;
+}
+
+.navbar-fixed-top.cbp-af-header-shrink {
+padding: 10px 0;
+}
+button.btn.btn-secondary.d-lg-none.toggle-search-btn{
+  width:150px;
+  float:right;
+ margin-left:30px;
+}

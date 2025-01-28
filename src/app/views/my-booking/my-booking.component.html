@@ -1,0 +1,66 @@
+<app-header1></app-header1>
+    <div class="container">
+      
+        <section class="hotel-container">
+            <!-- Left Column: Filters Section -->
+           
+          <!-- Right Column: Hotel Results Section -->
+          <div class="right-column">
+     
+            <h5>Booked Hotels</h5>
+            
+            <!-- Check if hotels data is available -->        
+            <div class="card" *ngFor="let hotel of hotels | paginate: { itemsPerPage: itemsPerPage, currentPage: page } " >
+              <div  class="row ">                
+                <div class="col-md-3">
+                  <div class="hotel-img">
+                    <!-- Display only the first image from the room_images array -->
+                    <img [src]="'https://cocoalabs.in/Cubino/storage/app/public/' + hotel.room.hotel.image" alt="Hotel Image" class="img-fluid" />
+                  </div>
+                  
+                </div>
+                <div class="col-md-6">
+                  <div class="hotel-info">
+                    <h5 class="hotel-name">{{ hotel.room.hotel.name }}</h5>
+                    <p class="hotel-address">{{ hotel.room.hotel.address }}</p>
+                    <p class="price">
+                      <span class="price-value">{{ hotel.room.price || 'Price not available' }}</span>
+                    </p>
+                    <!-- <p>Booked Date: {{ hotel.start_date | date: 'dd-MM-yyyy' }} <span>To</span> {{ hotel.end_date | date: 'dd-MM-yyyy' }}</p> -->
+                    <p>Booked Date: {{ hotel.start_date | date: 'dd-MM-yyyy' }} </p>
+                    <p><span class="badge-info">{{hotel.status}}</span></p>
+               
+                      
+                     
+                  </div>
+                </div>
+                <div class="col-md-3 text-center">
+                  <button class="btn view-details"  (click)="cancel(hotel.id)">
+                   Cancel Booking
+                  </button>
+                  <!-- <button class="btn book-now" (click)="bookNow(hotel)">
+                    Book Now
+                  </button> -->
+                </div>
+                <!-- Horizontal line -->
+               
+              </div>
+            </div>
+                <!-- No hotels found template -->
+                <div *ngIf="errorMsg1" style="text-align: center; margin-top: 30px;margin-bottom: 30px; color: #000; background-color: rgb(240, 228, 190); padding: 10px; width: 70%; margin-left: auto; margin-right: auto;">
+                  <p  style="text-align: center; color: #000; ">{{ errorMsg1 }}</p>
+                </div>
+          </div>
+        
+              
+              <div class="pagination-container"  *ngIf="hotels.length > 3">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+              </div>             
+          </section>
+    </div>
+  
+
+
+     
+
+

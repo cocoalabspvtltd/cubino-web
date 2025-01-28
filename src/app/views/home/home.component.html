@@ -30,7 +30,7 @@
 <nav id="mainnav" class="mainnav">
     <ul class="menu">
         <li class="home state-card" 
-            *ngFor="let state of states | slice:0:5" 
+            *ngFor="let state of states | slice:0:7" 
             (mouseenter)="subcity(state.id)" 
             (mouseleave)="hideCities(state.id)">
             <a (click)="state_search(state)">{{ state.name }}</a>
@@ -40,9 +40,9 @@
                 </li>
             </ul>
         </li>
-        <li class="home state-card">
+        <!-- <li class="home state-card">
             <a routerLink="Cities">All Cities</a>
-        </li>
+        </li> -->
     </ul>
 </nav>
 
@@ -54,8 +54,61 @@
                 <div class="hero__text">
                     <h5>WELCOME CUBINO</h5>
                     <h2>Experience the greatest for you holidays.</h2>
+                    <button  class="btn btn-primary" routerLink="/hotels">Search</button>
                 </div>
-                <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="filter__form">
+                <!-- <div class="row" class="search-box">
+                    <form class="inline-form row gx-3" [formGroup]="searchForm"  (ngSubmit)="onSearch()" >
+                      <div class="form-group col-12 col-lg-auto">
+                        <label for="location" class="form-label">Place/Hotel Name</label>
+                        <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location/Hotel Name" required />
+                      </div>
+                      <div class="form-group col-12 col-lg-auto">
+                        <label for="checkin" class="form-label">Check-in</label>
+                        <input type="date" id="checkin" formControlName="checkin" class="form-control"  [min]="todayDate" required />
+                      </div>
+                      <div class="form-group col-12 col-lg-auto">
+                        <label for="checkout" class="form-label">Check-out</label>
+                        <input type="date" id="checkout" formControlName="checkout" class="form-control"  [min]="todayDate"  required />
+                      </div>
+                      <div class="form-group col-12 col-lg-auto">
+                        <label for="guests" class="form-label">Guests</label>
+                        <select id="guests" formControlName="guests" class="form-control" (change)="onGuestsChange()" required>
+                          <option value="" disabled selected>Select guests</option>
+                          <option value="1">1 Guest</option>
+                          <option value="2">2 Guests</option>
+                          <option value="3">3 Guests</option>
+                          <option value="4">4 Guests</option>
+                          <option value="5">5 Guests</option>
+                          <option value="6">6 Guests</option>
+                          <option value="7">7 Guests</option>
+                          <option value="8">8 Guests</option>
+                          <option value="9">9 Guests</option>
+                          <option value="10">10 Guests</option>
+                          <option value="11">11 Guests</option>
+                          <option value="12">12 Guests</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-12 col-lg-auto">
+                        <label for="rooms" class="form-label">Rooms</label>
+                        <select id="rooms" formControlName="rooms" class="form-control" required>
+                          <option value="" disabled selected>Select rooms</option>
+                          <option *ngFor="let room of availableRooms" [value]="room.value">
+                            {{ room.label }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group col-12 col-lg-auto">
+                        <button type="submit" class="btn btn-success" [disabled]="searchForm.invalid" style="margin-top:25px;background-color: rgb(254, 255, 255);color:#000;border:none;padding:10px">
+                          Search
+                        </button>
+                      </div>
+                    </form>
+                    @if (errorMsg1) {
+                        <p>{{errorMsg1}}</p>
+                    }
+                  </div> -->
+
+                <!-- <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="filter__form">
                     <div class="filter__form__item filter__form__item--search">
                         <p>Location</p>
                         <div class="filter__form__input">
@@ -87,7 +140,7 @@
                         </div>
                     </div>
                     <button type="submit">Search</button>
-                </form>
+                </form> -->
             </div>
         </div>
     </div>

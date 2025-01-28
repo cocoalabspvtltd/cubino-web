@@ -91,7 +91,7 @@ export class LoginComponent {
       // alert(`OTP sent to +91${this.mobile.value}`);
       let data={ phone_number:  this.loginForm.value.selectedCountryCode+ ' ' + this.loginForm.value.mobile}      
       console.log(data)
-      this.Apiservice.Login(data).subscribe({
+      this.Apiservice.login(data).subscribe({
         next: (res) => {
           console.log(res)
           if (res.status_code == 200) {
@@ -118,6 +118,7 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    localStorage.clear();
     this.msg ='';
     this.errorMsg = '';
     if (this.loginForm.valid) {
@@ -126,7 +127,7 @@ export class LoginComponent {
         otp:this.loginForm.value.otp
       }
       console.log(data)
-      this.Apiservice.OTP(data).subscribe({
+      this.Apiservice.sendOtp(data).subscribe({
         next: (res) => {
           console.log(res)
           if (res.status_code== 200) {
@@ -139,7 +140,7 @@ export class LoginComponent {
             localStorage.setItem('logged', 'true');            
             this.errorMsg1 = '';
             this.loginForm.reset();
-             this.router.navigate(['/home']);
+             this.router.navigate(['/hotels']);
           } else {
             this.msg1 ='';
             this.errorMsg1 = res.message; // Error message from API

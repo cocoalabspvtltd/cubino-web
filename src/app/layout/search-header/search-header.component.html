@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row" class="search-box">
+      <form class="inline-form row gx-3">
+        <div class="form-group col-12 col-lg-auto">
+          <label for="location" class="form-label">Place</label>
+          <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location/Hotel Name" required />
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="checkin" class="form-label">Check-in</label>
+          <input type="date" id="checkin" formControlName="checkin" class="form-control"   required />
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="checkout" class="form-label">Check-out</label>
+          <input type="date" id="checkout" formControlName="checkout" class="form-control" required />
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="guests" class="form-label">Guests</label>
+          <select id="guests" formControlName="guests" class="form-control"  required>
+            <option value="" disabled selected>Select guests</option>
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5 Guests</option>
+            <option value="6">6 Guests</option>
+            <option value="7">7 Guests</option>
+            <option value="8">8 Guests</option>
+            <option value="9">9 Guests</option>
+            <option value="10">10 Guests</option>
+            <option value="11">11 Guests</option>
+            <option value="12">12 Guests</option>
+          </select>
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="rooms" class="form-label">Rooms</label>
+          <!-- <select id="rooms" formControlName="rooms" class="form-control" required>
+            <option value="" disabled selected>Select rooms</option>
+            <option *ngFor="let room of availableRooms" [value]="room.value">
+              {{ room.label }}
+            </option>
+          </select> -->
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <button type="submit" class="btn btn-success" routerLink="/bookings"  style="margin-top:25px;background-color: rgb(227, 232, 236);color:#000;border:none;padding:10px">
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

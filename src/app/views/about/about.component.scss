@@ -1,0 +1,34 @@
+#head {
+    position: relative;
+    background-image: url('/assets/img/hotel5.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 300px; /* Set the desired height */
+    width: 100%;
+    overflow: hidden;
+}
+
+#head::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity and color as needed */
+    z-index: 1;
+}
+
+#head .breadcrumb__text {
+    position: relative;
+    z-index: 2; /* Place text above the overlay */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#head h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+}

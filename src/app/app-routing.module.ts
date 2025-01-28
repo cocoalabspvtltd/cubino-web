@@ -15,10 +15,16 @@ import { TermsComponent } from './views/terms/terms.component';
 import { RegisterComponent } from './views/register/register.component';
 import { HotelsListDetailsComponent } from './views/hotels-list-details/hotels-list-details.component';
 import { HotelsListsComponent } from './views/hotels-lists/hotels-lists.component';
-
+import { BookingComponent } from './views/booking/booking.component';
+import { CancellationsComponent } from './views/cancellations/cancellations.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { MyBookingComponent } from './views/my-booking/my-booking.component';
+import { CitiesComponent } from './views/cities/cities.component';
+import { TravelAgentComponent } from './views/travel-agent/travel-agent.component';
 
   const routes: Routes = [
     { path: '',                        component: HomeComponent },
+    { path: 'index',                        component: HomeComponent },
     { path: 'about',                   component: AboutComponent },
     { path: 'member',                  component: MemberComponent },
     { path: 'contact',                 component: ContactComponent },
@@ -29,7 +35,14 @@ import { HotelsListsComponent } from './views/hotels-lists/hotels-lists.componen
     { path: 'room-details',          component: HotelsListDetailsComponent  },
     { path: 'register',                component: RegisterComponent },
     { path: 'privacy-policy',          component: PrivacyPolicyComponent },
-    { path: 'terms-conditions', component: TermsComponent },
+    { path: 'booking',                 component:  BookingComponent},
+    { path: 'terms-conditions',         component: TermsComponent },
+    { path: 'cancellations',           component: CancellationsComponent },
+    { path: 'profile',                component: ProfileComponent},
+    { path: 'bookings',                component:  MyBookingComponent},
+    { path: 'All-cities',                component:  CitiesComponent},
+    { path: 'TravelAgent',                component:   TravelAgentComponent },
+
     { path: 'home', component: UserDashboardComponent, children: [
         { path: 'rooms', component: HotelListComponent },
         { path: 'details', component: HotelCardComponent },

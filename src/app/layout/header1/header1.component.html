@@ -1,10 +1,28 @@
 <div class="offcanvas-menu-wrapper" [class.active]="isMenuOpen">
     <div class="offcanvas__close" (click)="toggleMenu()" style="color: #fff; float: right; border-radius: 20px; border: 1px solid #fff; padding: 5px 10px; cursor: pointer;">✖</div>
     <div class="offcanvas__logo">
-        <!-- <a routerLink=" "><img src="assets/img/logo.png" alt=""></a> -->
-    </div> 
+<a routerLink=" "><img src="assets/img/logo1.jpg" alt=""></a>
+    </div>
     <div id="mobile-menu-wrap"></div>
-    <div class="offcanvas__btn__widget" style="margin: 20px 0; text-align: center;">
+
+    <div class="offcanvas__widget">
+        <ul class="menu__class">
+            <li><a routerLink="/home">Home</a></li>
+            <li><a routerLink="/about">About</a></li>    
+            <li><a routerLink="/hotels">Hotels</a></li>
+            <li><a routerLink="/member">Become a Member</a></li>
+            <li><a routerLink="/corporate">Cubino for Business</a></li>
+            <li><a routerLink="/property">List Your Property</a></li>   
+           
+            <li><a routerLink="/contact">Contact</a></li>                                
+        </ul>
+        <!-- <ul>
+            <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
+            <li><span class="icon_phone"></span> (123) 456-78-910</li>
+            <li><span class="icon_mail"></span> info&#64;cubino.com</li>
+        </ul> -->
+    </div>
+    <div class="offcanvas__btn__widget" >
         <a routerLink="/login" class="btn btn-primary">
             <i class="fa fa-sign-in-alt"></i> Login
         </a>
@@ -12,65 +30,114 @@
             <i class="fa fa-user-plus"></i> Signup
         </a>
     </div>
-    <div class="offcanvas__widget">
-        <ul>
-            <li><span class="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-            <li><span class="icon_phone"></span> (123) 456-78-910</li>
-            <li><span class="icon_mail"></span>info&#64;cubino.com</li>
-        </ul>
-    </div>
 </div>
 
 <header class="header" [class.scrolled]="isScrolled">
     <div class="header__nav__option">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-2">
                     <div class="header__logo">
-                        <a routerLink=""><img src="assets/img/logo1.jpg" alt="Logo"></a>
+                        <a routerLink="/hotels"><img src="assets/img/logo1.jpg" alt="Logo"></a>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <div class="header__nav">
+                       
+                            <!-- <div class="search-box" >
+                                <form class="inline-form row gx-3" [formGroup]="searchForm"  (ngSubmit)="onSearch()" >
+                                    <div class="form-group col-12 col-lg-auto">
+                                      <label for="location" class="form-label">Place/Hotel Name</label>
+                                      <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location/Hotel Name" required />
+                                    </div>
+                                    <div class="form-group col-12 col-lg-auto">
+                                      <label for="checkin" class="form-label">Check-in</label>
+                                      <input type="date" id="checkin" formControlName="checkin" class="form-control" required />
+                                    </div>
+                                    <div class="form-group col-12 col-lg-auto">
+                                      <label for="checkout" class="form-label">Check-out</label>
+                                      <input type="date" id="checkout" formControlName="checkout" class="form-control" required />
+                                    </div>
+                                    <div class="form-group col-12 col-lg-auto">
+                                      <label for="guests" class="form-label">Guests</label>
+                                      <select id="guests" formControlName="guests" class="form-control" (change)="onGuestsChange()" required>
+                                        <option value="" disabled selected>Select guests</option>
+                                        <option value="1">1 Guest</option>
+                                        <option value="2">2 Guests</option>
+                                        <option value="3">3 Guests</option>
+                                        <option value="4">4 Guests</option>
+                                        <option value="5">5 Guests</option>
+                                        <option value="6">6 Guests</option>
+                                        <option value="7">7 Guests</option>
+                                        <option value="8">8 Guests</option>
+                                        <option value="9">9 Guests</option>
+                                        <option value="10">10 Guests</option>
+                                        <option value="11">11 Guests</option>
+                                        <option value="12">12 Guests</option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-auto">
+                                      <label for="rooms" class="form-label">Rooms</label>
+                                      <select id="rooms" formControlName="rooms" class="form-control" required>
+                                        <option value="" disabled selected>Select rooms</option>
+                                        <option *ngFor="let room of availableRooms" [value]="room.value">
+                                          {{ room.label }}
+                                        </option>
+                                      </select>
+                                    </div>
+                                    <div class="form-group col-12 col-lg-auto">
+                                      <button type="submit" class="btn btn-success" [disabled]="searchForm.invalid" style="margin-top:25px;background-color: rgb(227, 232, 236);color:#000;border:none;padding:10px">
+                                        Search
+                                      </button>
+                                    </div>
+                                  </form>
+                                  
+                            </div> -->
+                            
+                     
                         <nav class="header__menu">
-                            <div class="search-box">
-                                <form class="search-form" action="/search" method="GET">
-                                    <div class="form-group">
-                                        <label for="location" class="visually-hidden">Place</label>
-                                        <input type="text" id="location" name="location" class="form-control" placeholder="Enter location" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="checkin" class="visually-hidden">Check-in</label>
-                                        <input type="date" id="checkin" name="checkin" class="form-control" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="checkout" class="visually-hidden">Check-out</label>
-                                        <input type="date" id="checkout" name="checkout" class="form-control" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="guests" class="visually-hidden">Guests</label>
-                                        <select id="guests" name="guests" class="form-control" required>
-                                            <option value="" disabled selected>Guests</option>
-                                            <option value="1">1 Guest</option>
-                                            <option value="2">2 Guests</option>
-                                            <option value="3">3 Guests</option>
-                                            <option value="4">4 Guests</option>
-                                            <option value="5+">5+ Guests</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn">Search</button> 
-                                    </div>
-                                </form>
-                            </div>
+                            <ul class="menu__class">
+                                @if(loginToken) {
+                                    <li><a routerLink=" ">{{'home' |translate}}</a></li>
+                                    <li><a routerLink="/hotels">{{'hotels'|translate}}</a></li>
+                                    <li><a routerLink="/member">{{'Become a Member'|translate}}</a></li> 
+                                }@else {
+                                    <li><a routerLink="index">{{'home' |translate}}</a></li>
+                                    <li><a routerLink="/hotels">{{'hotels'|translate}}</a></li>
+                                }
+                                
+                                <li><a routerLink="/corporate">{{'Cubino for Business' |translate}}</a></li>
+                                <li><a routerLink="/property">{{'List Your Property'|translate}}</a></li>                           
+                            </ul>
+                           
                         </nav>
-                        <div class="header__nav__widget">
-                            <a routerLink="/login" class="btn btn-primary">
-                                <i class="fa fa-sign-in-alt"></i> Login
-                            </a>
-                            <a routerLink="/register" class="btn btn-success">
-                                <i class="fa fa-user-plus"></i> Signup
-                            </a>
+                        <div class="header__nav__widget">  
+                            @if(loginToken) {
+                                <div class="user-dropdown">
+                                    <div class="user-icon" (click)="toggleUserDropdown()">
+                                        <img src="assets/img/user1.png" alt="User"  />
+                                    </div>
+                                    <ul class="dropdown-menu" [class.show]="isUserDropdownOpen">
+                                        <li><a routerLink="/profile">{{'profile'|translate}}</a></li>
+                                        <li><a routerLink="/bookings">{{'My Booking'|translate}}</a></li>
+                                        <li><a routerLink="/cancellations">{{'Cancellations'|translate}}</a></li>
+                                        <li><a (click)="logout()" >{{'Logout'|translate}}</a></li>
+                                    </ul>
+                                </div>
+                            }  @else {
+                                <a routerLink="/login" class="btn btn-primary">
+                                    <i class="fa fa-sign-in-alt"></i> {{'login' |translate}}
+                                </a>
+                                <a routerLink="/register" class="btn btn-success">
+                                    <i class="fa fa-user-plus"></i> {{'sign up'|translate}}
+                                </a>
+                            }   
+                            <select name="" id="" class="btn btn-success" (change)="ChangeLang($event)">
+                                <option *ngFor="let lang of  this.translate.getLangs()"  [value]="lang"  [selected]="lang===translate.currentLang">{{lang}}</option>
+                                <!-- <option value="fr">French</option>
+                                <option value="es">Spanish</option> -->
+                            </select>    
+                            
                         </div>
                     </div>
                 </div>

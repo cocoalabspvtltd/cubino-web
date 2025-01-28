@@ -1,0 +1,198 @@
+
+/* General Styles */
+#hotel-section {
+  margin-top: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
+  height: auto;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 14px;
+}
+
+.card {
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 20px;
+}
+
+.card h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card .btn {
+  border-radius: 4px;
+}
+
+.badge-info {
+  background-color: #00c77b;
+  padding: 5px;
+  font-size: 14px;
+  float: right;
+}
+
+#book-button {
+  background-color: #000;
+  border: none;
+}
+
+.fa {
+  font-size: 18px;
+  color: #e69f08;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.fa:hover {
+  color: #3c454e;
+  transform: scale(1.2);
+}
+
+/* Amenities Styles */
+.amenities {
+  padding: 25px;
+  font-size: 14px !important;
+  color: #333;
+  background-color: #eeeeee;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.amenities h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.amenities ul {
+  padding-left: 20px;
+}
+li {
+  list-style-type: none;
+
+}
+.amenities  p span {
+  font-size: 14px !important;
+  padding-left:10px;
+}
+.amenities ul li {
+  list-style: none;
+  font-size: 14px;
+ 
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+#policy{
+  list-style-type: none;
+}
+.amenities ul li::marker {
+  color: #28a745;
+  font-size: 16px;
+}
+
+.amenities ul li:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-4, .col-md-8 {
+    width: 100%;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .amenities {
+    padding: 10px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  h3 {
+    font-size: 20px;
+  }
+
+  .amenities ul li {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Default fixed height for carousel images */
+.owl-carousel .owl-item img {
+  height: 200px !important; /* Default fixed height */
+  width: 100%; /* Ensure full width within the container */
+  object-fit: cover; /* Maintain aspect ratio while cropping excess */
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
+  border-radius: 8px; /* Optional: Rounded corners */
+  transition: transform 0.3s ease; /* Optional: Smooth hover effect */
+}
+
+/* Hover effect for a better UI */
+.owl-carousel .owl-item img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .owl-carousel .owl-item img {
+    height: 150px; /* Reduce height for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .owl-carousel .owl-item img {
+    height: 120px; /* Further reduce height for very small screens */
+  }
+}/* Container Styling */
+.hotel-policies {
+  background-color: #fff;
+  padding: 20px; /* Inner spacing */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0; /* Light border */
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px; /* Add some space from the top */
+}
+/* Hotel Policies Container */
+.amenities {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.amenities:hover {
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}

@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
+import { StorageServiceService } from '../../services/storage-service.service';
 
 @Component({
   selector: 'app-hotels-list-details',
@@ -6,47 +12,100 @@ import { Component } from '@angular/core';
   styleUrl: './hotels-list-details.component.scss'
 })
 export class HotelsListDetailsComponent {
-  roomTitle: string = 'Premium King Room';
-  roomDescription: string = `We’re halfway through the summer, but while plenty of people are kicking back and enjoying their vacations, the social media development teams likely aren’t doing the same. In the past two weeks alone, we’ve seen four big new updates that can directly impact the social marketing campaigns of hotels, resorts, and other businesses in the hospitality industry. Let’s take a close look at each one.`;
-  
-  otherFacilities: string[] = [
-    'Takami Bridal Attire',
-    'Esthetic Salon',
-    'Multilingual staff',
-    'Dry cleaning and laundry',
-    'Credit cards accepted',
-    'Rent-a-car',
-    'Reservation & confirmation',
-    'Babysitter upon request',
-    '24-hour currency exchange',
-    '24-hour Manager on Duty'
-  ];
+  roomTitle: any
+  roomDescription:any
+  discount:any
+  hotelData:any
+  hotel: any;
+  aminities: any;
+  hotel_policies: any;
+  price: any;
+  date:any
+  guest:any
+  rooms:any
+  guestCount: any;
+  roomCount: any;
+  start_date: any;
+  end_date: any;
+  images: any;
+ constructor(
+    private apiService: ApiService,private location: Location,private sanitizer: DomSanitizer,private storageService: StorageServiceService,
+    private router: Router) { }
 
-  additionalFacilities: string[] = [
-    'Air Conditioning',
-    'Cable TV',
-    'Free drinks',
-    'Unlimited Wifi',
-    'Restaurant quality',
-    'Service 24/24',
-    'Gym Centre',
-    'Spa & Wellness'
-  ];
-
-  popularFacilities = [
-    { name: 'Air Conditioning', icon: 'assets/img/rooms/details/facilities/fac-1.png' },
-    { name: 'Cable TV', icon: 'assets/img/rooms/details/facilities/fac-2.png' },
-    { name: 'Free drinks', icon: 'assets/img/rooms/details/facilities/fac-3.png' },
-    { name: 'Unlimited Wifi', icon: 'assets/img/rooms/details/facilities/fac-4.png' },
-    { name: 'Restaurant quality', icon: 'assets/img/rooms/details/facilities/fac-5.png' },
-    { name: 'Service 24/24', icon: 'assets/img/rooms/details/facilities/fac-6.png' },
-    { name: 'Gym Centre', icon: 'assets/img/rooms/details/facilities/fac-7.png' },
-    { name: 'Spa & Wellness', icon: 'assets/img/rooms/details/facilities/fac-8.png' }
-  ];
-
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void {  
+   this.details();
   }
+  customOptions: OwlOptions = {
+    loop: true,
+    margin: 10,
+    nav: false,
+    dots: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    responsive: {
+      0: { items: 1 },
+      600: { items: 2 },
+      1000: { items: 4 }
+    }
+  }
+  goBack() {
+    this.location.back();
+  }
+  details(){
+    const hotelData = this.storageService.getItem('hotel');
+    this.hotelData = hotelData ? JSON.parse(hotelData) : null;
+    console.log('this.hotelData:', this.hotelData);
+    this.roomTitle                 = this.hotelData.hotel_name;
+    this.roomDescription           = this.hotelData.description;
+    this.aminities                 = this.hotelData.amenities;
+   // this.hotel_policies            = this.hotelData.hotel_policies;   
+    const unsafePolicies = this.hotelData.hotel_policies;
+    this.hotel_policies = this.sanitizer.bypassSecurityTrustHtml(unsafePolicies);
+     this.price                     = this.hotelData.price;  
+     this.date                     = this.hotelData.date;  
+     this.guestCount               = this.hotelData.guestCount;
+     this.roomCount                = this.hotelData.roomCount; 
+     this.start_date = this.parseDate(this.hotelData.start_date);
+    this.end_date = this.parseDate(this.hotelData.end_date);
+   this.images=this.hotelData.room_images;
+  }
+ 
+   /**
+   * Parse a date string into a Date object.
+   * @param dateString - The date string to parse.
+   * @returns Parsed Date object or null if invalid.
+   */
+   parseDate(dateString: string): Date | null {
+    // Attempt to parse ISO 8601 format
+    if (!isNaN(Date.parse(dateString))) {
+      return new Date(dateString);
+    }
 
+    // Attempt to parse custom format dd-MM-yyyy
+    const customDateRegex = /^\d{2}-\d{2}-\d{4}$/;
+    if (customDateRegex.test(dateString)) {
+      const [day, month, year] = dateString.split('-').map(Number);
+      return new Date(year, month - 1, day); // Month is 0-indexed
+    }
+
+    // Invalid date format
+    console.error('Invalid date format:', dateString);
+    return null;
+  }
+  getStars(rating: number): number[] {
+    const numStars = Number(rating); // Convert rating to number
+  return new Array(numStars).fill('⭐');
+  }
+  
+  parseRoomImages(images: string): string[] {
+    try {
+      return JSON.parse(images) || [];
+    } catch (error) {
+      console.error('Error parsing room images:', error);
+      return [];
+    }
+  }
+  submit(){
+    this.router.navigateByUrl('/booking');
+  }
 }

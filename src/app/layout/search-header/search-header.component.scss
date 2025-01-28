@@ -1,0 +1,81 @@
+
+.container-fluid {
+    position: fixed; /* Fix the search box in place */
+    top: 75px; /* Adjust top spacing */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, 0); /* Ensure it's precisely centered */
+    z-index: 1000; /* Keep it above other content */
+    width: 100%; /* Full width for responsiveness, but with padding */
+    max-width: 100%; /* Set a limit to avoid stretching on larger screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    background: #ffffff; /* Background for better visibility */
+    border-radius: 8px; /* Rounded corners for design aesthetics */
+   
+  }
+  
+  /* Search Box */
+  .search-box {
+    width: 100%; /* Take up the full container width */
+    max-width: 1200px; /* Restrict to a maximum width */
+    padding: 10px; /* Inner padding for spacing */
+    margin: auto; /* Center it horizontally */
+    background: #ffffff; /* Background for visibility */
+    z-index: 9999; /* Ensure it's above other elements */
+   // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for better visuals */
+  }
+  
+  /* Form Fields */
+  .inline-form .form-group {
+    margin-bottom: 15px; /* Space between form fields */
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    display: block;
+    width: 100%; /* Make button full-width on smaller screens */
+    padding: 10px; /* Add padding for a larger touch area */
+    font-size: 16px; /* Slightly larger font for better usability */
+    border: none; /* Remove default borders */
+    background-color: #4caf50; /* Green background */
+    color: white; /* White text */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .container-fluid {
+      top: 100px; /* Adjust top position for smaller screens */
+      padding: 10px; /* Reduce padding */
+      width: 95%; /* Reduce width for smaller screens */
+    }
+  
+    .inline-form .form-group {
+      width: 100%; /* Stack form fields vertically */
+      margin-bottom: 10px; /* Reduce spacing between fields */
+    }
+  
+    button[type="submit"] {
+      font-size: 14px; /* Slightly smaller font for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container-fluid {
+      top: 80px; /* Adjust top position for very small screens */
+      padding: 8px; /* Further reduce padding */
+    }
+  
+    button[type="submit"] {
+      font-size: 12px; /* Even smaller font for very small screens */
+      padding: 8px; /* Smaller padding for touch devices */
+    }
+  }
+  #section{
+    margin-top: 50px;;
+  }
+  

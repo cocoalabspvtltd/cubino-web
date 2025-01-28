@@ -1,0 +1,24 @@
+<app-header1></app-header1>
+
+      <div class="container">
+       <div class="form-container">           
+            <div class="success-banner">🎉 Welcome to Cubino booking!</div>
+            <div class="profile-picture-container">
+                <img
+                  [src]="userData.user_details.profile_picture || 'assets/img/user1.png'"
+                  alt="Profile Picture"
+                  class="profile-picture"
+                />
+              </div>
+            <form>
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" placeholder="Enter first and last name"  value="{{userData.user_details.name}}"/>
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="name@abc.com" value="{{userData.user_details.email}}" />
+              <label for="mobile-number">Mobile Number</label>
+              <input type="tel" id="mobile-number" placeholder="e.g. 1234567890" value="{{userData.user_details.phone_number}}"/>
+              <!-- <button type="button" disabled>Send Passcode</button> -->
+            </form>
+          </div>
+        </div>
+     

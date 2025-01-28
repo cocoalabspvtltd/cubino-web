@@ -1,1 +1,151 @@
 /* You can add global styles to this file, and also import other style files */
+p{
+    color:#000;
+}ul {
+    list-style-type: none !important;
+  }
+  
+/* Title Style */
+.policies-title {
+    font-size: 18px;
+    color: #0f0f0f;
+    font-weight: 600;
+    //margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+   // border-bottom: 2px solid #a5a4a3;
+   // padding-bottom: 5px;
+  }
+  
+  /* Content Style with Two Columns */
+  .policies-content {   
+    font-size:14px;
+    line-height:1.5;
+    color: #242424;
+    margin-top: 5px;
+    //margin-bottom: 5px;
+    // font-family: 'Roboto', sans-serif;
+  }
+  
+  .policies-content ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;    
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  .policies-content li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .policies-content li:hover {
+    background-color: #ffebee;
+    border-radius: 5px;
+    transform: translateX(5px);
+  }
+  
+  .policies-content li::before {
+    content: '✔';
+    color: #ee9c04;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 16px;
+  }
+  
+//   /* Add icons next to some policies */
+//   .policies-content li:first-child::before {
+//     content: '🔑';
+//   }
+  
+//   .policies-content li:nth-child(3)::before {
+//     content: '🐾';
+//   }
+  
+//   .policies-content li:nth-child(5)::before {
+//     content: '🌐';
+//   }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .policies-content {
+      grid-template-columns: 1fr; /* Single column on small screens */
+    }
+  }
+      /* Base styles for the dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Align below the button */
+  left: 0;
+  z-index: 1000;
+  display: none; /* Hidden by default */
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show the dropdown when the class 'show' is added */
+.dropdown-menu.show {
+  display: block; /* Make it visible */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dropdown menu links */
+.dropdown-menu li {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  color: #212529;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li a:hover {
+  background-color: #3e82c5;
+  color: #007bff;
+}
+
+/* Active/selected link styles */
+.dropdown-menu li a.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 576px) {
+  .dropdown-menu {
+    width: 100%; /* Full width for small screens */
+    position: relative; /* Position relative for proper alignment */
+    box-shadow: none; /* Remove shadow for simplicity */
+    border-radius: 0; /* Remove rounded corners */
+  }
+
+  .dropdown-menu li {
+    padding: 0.5rem;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.5rem;
+  }
+}

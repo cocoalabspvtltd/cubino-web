@@ -1,8 +1,75 @@
 <app-header1></app-header1>
-    <section class="hotel-container">
+<div class="container">
+  
+  <header class="navbar-fixed-top cbp-af-header">
+    <div class="row" >   
+    <button 
+    class="btn btn-secondary d-lg-none toggle-search-btn" 
+    (click)="toggleSearchBox()">
+    {{ showSearchBox ? 'Hide Search' : 'Show Search' }}
+    
+  </button></div>  
+  
+    
+  
+      <div [ngClass]="{ 'd-none': !showSearchBox, 'd-lg-block': true }">
+        <div class="row" class="search-box">
+      <form class="inline-form row gx-2" [formGroup]="searchForm"  (ngSubmit)="onSearch()" >
+        <div class="form-group col-12 col-lg-auto">
+          <label for="location" class="form-label">Place</label>
+          <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location/Hotel Name" required />
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="checkin" class="form-label">Check-in</label>
+          <input type="date" id="checkin" formControlName="checkin" class="form-control"  [min]="todayDate" required />
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="checkout" class="form-label">Check-out</label>
+          <input type="date" id="checkout" formControlName="checkout" class="form-control" [min]="todayDate"  required />
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="guests" class="form-label">Guests</label>
+          <select id="guests" formControlName="guests" class="form-control" (change)="onGuestsChange()" required>
+            <option value="" disabled selected>Select guests</option>
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5 Guests</option>
+            <option value="6">6 Guests</option>
+            <option value="7">7 Guests</option>
+            <option value="8">8 Guests</option>
+            <option value="9">9 Guests</option>
+            <option value="10">10 Guests</option>
+            <option value="11">11 Guests</option>
+            <option value="12">12 Guests</option>
+          </select>
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <label for="rooms" class="form-label">Rooms</label>
+          <select id="rooms" formControlName="rooms" class="form-control" required>
+            <option value="" disabled selected>Select rooms</option>
+            <option *ngFor="let room of availableRooms" [value]="room.value">
+              {{ room.label }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-12 col-lg-auto">
+          <button type="submit" class="btn btn-success" [disabled]="searchForm.invalid" style="margin-top:25px;background-color: rgb(227, 232, 236);color:#000;border:none;padding:10px">
+           {{'Search'|translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+    </div>
+  </header>
+
+
+
+    <section  id="section">
         <!-- Left Column: Filters Section -->
          
-        <div class="left-column">
+        <!-- <div class="left-column">
           <div class="filters">
             <h3>Filters</h3>
             <div class="filter-category">
@@ -46,28 +113,35 @@
             </div>
           </div>
         </div>
-      
+       -->
       <!-- Right Column: Hotel Results Section -->
-      <div class="right-column">
+      <div class="right-column">       
+         
+      
+    
           <div class="hotel-results">
-            <div class="row">
-              <p class="hotel-title">Hotels in {{ city?.name }}</p>
-              <hr>
-            </div>
+        
         
         <!-- Check if hotels data is available -->
-      <div *ngIf="hotels?.length > 0; else noHotelsFound" class="hotel-cards">
-          <div *ngFor="let hotel of hotels" class="row hotel-card">
-            <div class="col-md-4">
+      <div  class="hotel-cards">
+        <div class="card"  *ngFor="let hotel of hotels  | paginate: { itemsPerPage: itemsPerPage, currentPage: page } ">
+          <div  class="row ">
+            
+            <div class="col-md-3">
               <div class="hotel-img">
-                <img
+                <!-- <img
                   [src]="hotel.room_image || 'assets/img/hotel6.jpg'"
                   [alt]="hotel.hotel_name"
                   class="img-fluid"
-                />
+                /> -->
+                <div class="hotel-img">
+                  <!-- Display only the first image from the room_images array -->
+                  <img [src]="'https://cocoalabs.in/Cubino/storage/app/public/' + hotel.hotel_image" alt="Hotel Image" class="img-fluid" />
+                </div>
+                
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
               <div class="hotel-info">
                 <h5 class="hotel-name">{{ hotel.hotel_name }}</h5>
                 <p class="hotel-address">{{ hotel.hotel_address }}</p>
@@ -75,123 +149,47 @@
                   <span class="price-value">{{ hotel.price || 'Price not available' }}</span>
                 </p>
                 <p class="rating">
-                  Rating: {{ hotel.rating || 'Not rated' }} ⭐
+                   <ng-container *ngIf="hotel.hotel_rating; else notRated">
+              <!-- Display the stars -->
+              <span *ngFor="let star of getStars(hotel.hotel_rating); let i = index">
+                {{ star }}
+              </span>
+              <!-- Display the numeric rating -->
+              <!-- {{ hotel.hotel_rating }} -->
+            </ng-container>
+            <ng-template #notRated>
+              Not rated
+            </ng-template>
                 </p>
               </div>
             </div>
             <div class="col-md-2 text-center">
               <button class="btn view-details" (click)="viewDetails(hotel)">
-                View Details
+                {{'View Details' |translate}}
               </button>
               <button class="btn book-now" (click)="bookNow(hotel)">
-                Book Now
+                {{'Book Now'|translate}}
               </button>
             </div>
             <!-- Horizontal line -->
-            <hr
-              style="
-                border:1px solid rgb(223, 220, 220);
-                width: 90%;
-                margin: 10px auto;
-              "
-            />
+           
           </div>
         </div>
-        <div *ngIf="hotels?.length > 0; else noHotelsFound" class="hotel-cards">
-          <div *ngFor="let hotel of hotels" class="row hotel-card">
-            <div class="col-md-4">
-              <div class="hotel-img">
-                <img
-                  [src]="hotel.room_image || 'assets/img/hotel6.jpg'"
-                  [alt]="hotel.hotel_name"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="hotel-info">
-                <h5 class="hotel-name">{{ hotel.hotel_name }}</h5>
-                <p class="hotel-address">{{ hotel.hotel_address }}</p>
-                <p class="price">
-                  <span class="price-value">{{ hotel.price || 'Price not available' }}</span>
-                </p>
-                <p class="rating">
-                  Rating: {{ hotel.rating || 'Not rated' }} ⭐
-                </p>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <button class="btn view-details" (click)="viewDetails(hotel)">
-                View Details
-              </button>
-              <button class="btn book-now" (click)="bookNow(hotel)">
-                Book Now
-              </button>
-            </div>
-            <!-- Horizontal line -->
-            <hr
-              style="
-                border:1px solid rgb(223, 220, 220);
-                width: 90%;
-                margin: 10px auto;
-              "
-            />
-          </div>
-        </div>
-        <div *ngIf="hotels?.length > 0; else noHotelsFound" class="hotel-cards">
-          <div *ngFor="let hotel of hotels" class="row hotel-card">
-            <div class="col-md-4">
-              <div class="hotel-img">
-                <img
-                  [src]="hotel.room_image || 'assets/img/hotel6.jpg'"
-                  [alt]="hotel.hotel_name"
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="hotel-info">
-                <h5 class="hotel-name">{{ hotel.hotel_name }}</h5>
-                <p class="hotel-address">{{ hotel.hotel_address }}</p>
-                <p class="price">
-                  <span class="price-value">{{ hotel.price || 'Price not available' }}</span>
-                </p>
-                <p class="rating">
-                  Rating: {{ hotel.rating || 'Not rated' }} ⭐
-                </p>
-              </div>
-            </div>
-            <div class="col-md-2 text-center">
-              <button class="btn view-details" (click)="viewDetails(hotel)">
-                View Details
-              </button>
-              <button class="btn book-now" (click)="bookNow(hotel)">
-                Book Now
-              </button>
-            </div>
-            <!-- Horizontal line -->
-            <hr
-              style="
-                border:1px solid rgb(223, 220, 220);
-                width: 90%;
-                margin: 10px auto;
-              "
-            />
-          </div>
-        </div>
+      </div>
         <!-- No hotels found template -->
-        <ng-template #noHotelsFound>
-          <p class="text-center">No hotels found.</p>
-        </ng-template>
+     
         
             <!-- If no hotels are found -->
             <ng-template #noHotelsFound>
-              <div class="no-hotels">
-                <p>No hotels found in {{ city?.name || 'the selected location' }}.</p>
+            
+              <div  style="text-align: center; margin-top: 30px;margin-bottom: 30px; color: #000; background-color: rgb(240, 228, 190); padding: 10px; width: 70%; margin-left: auto; margin-right: auto;">
+                <p  style="text-align: center; color: #000; ">No hotels found</p>
               </div>
             </ng-template>
-        
-            @if(hotels>10){
+            <div *ngIf="errorMsg1" style="text-align: center; margin-top: 30px;margin-bottom: 30px; color: #000; background-color: rgb(240, 228, 190); padding: 10px; width: 70%; margin-left: auto; margin-right: auto;">
+              <p  style="text-align: center; color: #000; ">{{ errorMsg1 }}</p>
+            </div>
+            <!-- @if(hotels>10){
               <div class="pagination">
                   <ul class="pagination-list">
                     <li>
@@ -212,13 +210,19 @@
                     </li>
                   </ul>
                 </div>
-            }
+            } -->
             <!-- Pagination -->
          
           </div>
         </div>
-        
+
+        <div class="pagination-container"  *ngIf="hotels.length > 3">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+     
         
       </section>
-
-
+    </div>
+    
+<!-- <app-footer1></app-footer1> -->
+     
