@@ -7,7 +7,7 @@
         <li><a (click)="scrollToSection('howit')">How It Works</a></li>
         <li><a href="#">Partner Speak</a></li>
       </ul>
-      <button class="btn btn-signin">Sign In</button>
+      <button class="btn btn-signin" routerLink="/agent">Sign In</button>
     </nav>
   </header>
   <section class="hero">
@@ -23,14 +23,26 @@
     </div>
     <div class="form-container">
       <h3>Get Started</h3>
-      <form>
-        <input type="text" placeholder="Enter your Name" />
-        <input type="text" placeholder="Enter your Company" />
-        <input type="email" placeholder="Enter your Email" />
-        <input type="tel" placeholder="Enter your Phone Number" />
-        <input type="text" placeholder="Enter City" />
-        <button type="submit" class="btn btn-submit">Register Now</button>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="name" placeholder="Enter your Name" />
+        <input type="text" formControlName="agency_name" placeholder="Enter your Agency Name" />
+        <input type="email" formControlName="email" placeholder="Enter your Email" />
+        <input type="tel" formControlName="phone_number" placeholder="Enter your Phone Number" />
+        <input type="text" formControlName="pan_no" placeholder="Enter PAN Number" />
+        <input type="password" formControlName="password" placeholder="Enter Password" />
+        <input type="password" formControlName="password_confirmation" placeholder="Enter Password" />
+        <button type="submit" class="btn btn-submit"  [disabled]="registrationForm.invalid">Register Now</button>
       </form>
+      @if (this.msg) {
+        <div  class="alert alert-success" role="alert">
+           <p >{{this.msg}}</p>
+         </div>
+       }
+       @if (this.errorMsg){
+         <div class="alert alert-danger" role="alert">
+           <p >{{this.errorMsg}}</p>
+         </div>
+       }
     </div>
   </section>
   <section class="features" id="features">

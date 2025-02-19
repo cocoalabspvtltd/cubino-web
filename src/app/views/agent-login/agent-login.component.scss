@@ -1,0 +1,241 @@
+/* Section background and padding */
+#section {
+  background: url('/assets/img/hotel8.jpg');
+  background-size: cover;
+  padding: 5%;
+}
+
+/* Container styling */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 70vh;
+}
+
+/* Left Section */
+.left-section {
+  position: relative;
+  flex: 1 1 400px;
+  background-size: cover;
+  min-height: 50vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.726);
+}
+
+.content {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.content h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.help-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Right Section */
+.right-section {
+  flex: 1 1 400px;
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.right-section h2 {
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.login-form {
+  //max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.phone-group,
+.otp-group {
+  margin-bottom: 20px;
+}
+
+.phone-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.phone-input span {
+  padding: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Button Styling */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2a2c2e;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #44484d;
+}
+
+.submit-btn {
+  background-color: #232524;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #232524;
+}
+
+/* Error messages */
+.error-message {
+  color: #d9534f;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    flex: 1 1 100%;
+  }
+
+  .login-form {
+    padding: 15px;
+    box-shadow: none;
+    border: none;
+  }
+
+  .phone-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .phone-input span {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .input-field {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .error-message {
+    font-size: 12px;
+  }
+}
+
+/* Select dropdown styling */
+select {
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  width: 150px;
+}
+
+/* General paragraph styling */
+p {
+  color: #000;
+}
+
+/* OTP Group Styling */
+.otp-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* OTP Actions */
+.otp-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

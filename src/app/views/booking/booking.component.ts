@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DatePipe, Location } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import { StorageServiceService } from '../../services/storage-service.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -23,21 +24,27 @@ export class BookingComponent {
   start_date: any;
   end_date: any;
   room_id: any;
+  agent:any
+  userData1: any;
 
    constructor(
-      private apiService: ApiService,private location: Location,private datePipe: DatePipe,
+      private apiService: ApiService,private location: Location,private datePipe: DatePipe,private storageService: StorageServiceService,
       private router: Router) { }
   ngOnInit(): void {  
     this.details();
-     this.loginToken = localStorage.getItem('token');
-     this.user= localStorage.getItem('user');
-     this.userData = JSON.parse(this.user) 
-     console.log(this.loginToken,this.userData)
+     this.loginToken =  this.storageService.getItem('token');
+     this.user=  this.storageService.getItem('user');
+     this.agent = this.storageService.getItem('agent');
+
+     // Parse the data if available, otherwise set to null
+     this.userData = this.user ? JSON.parse(this.user) : null;
+     this.userData1 = this.agent ? JSON.parse(this.agent) : null; 
+     
    }
    details(){
-    const hotelData = localStorage.getItem('hotel');
+    const hotelData = this.storageService.getItem('hotel');
     this.hotelData = hotelData ? JSON.parse(hotelData) : null;
-    console.log('this.hotelData:', this.hotelData);
+  //  console.log('this.hotelData:', this.hotelData);
     this.roomTitle                 = this.hotelData.hotel_name;
     this.roomDescription           = this.hotelData.description;
     this.aminities                 = this.hotelData.aminities;
@@ -110,7 +117,7 @@ export class BookingComponent {
      console.log('data',data)
       this.apiService.booking(data).subscribe({
         next: (res: any) => {
-          console.log(res)
+          console.log('booking',res)
           if (res.status_code === 201) {
                this.router.navigateByUrl('/bookings')
           }

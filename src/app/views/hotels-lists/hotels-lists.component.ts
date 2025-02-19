@@ -106,20 +106,11 @@ export class HotelsListsComponent implements OnInit {
           end_date: ''
         };
       }
-      
-      
-      // else if(this.searchForm.value.location==''&&this.city!=""&& this.searchForm.value.checkin==''&& this.searchForm.value.checkout=='' ){
-      //   this.data={  city:this.city,guest_limit:'',room_limit:'', start_date:'' ,  end_date: ''} 
-      // }
-      //console.log('data',this.data)
       this.apiService.getRooms(this.data).subscribe({
         next: (res: any) => {
-          //console.log('initial',res)
           this.loading = false;
           if (res.status_code === 200) {
-            this.hotels = res.rooms|| [];   
-           
-        
+            this.hotels = res.rooms|| [];             
             this.guest_count=res.guest_count;
             this.room_limit=res.room_count;
             this.start_date=res.start_date;
@@ -129,9 +120,7 @@ export class HotelsListsComponent implements OnInit {
             this.errorMsg1 = res.message || 'Unknown error occurred.';
           }
         },
-        error: (err) => {
-          //console.error('HTTP Error:', err);
-          //this.errorMsg1 = err;
+        error: (err) => {  
           this.errorMsg1 = err.message ? err.message.replace('Error:', '').trim() : 'No data found';
 
         }

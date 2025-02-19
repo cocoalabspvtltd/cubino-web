@@ -20,8 +20,8 @@ import { PrivacyPolicyComponent } from './views/privacy-policy/privacy-policy.co
 import { TermsComponent } from './views/terms/terms.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -35,19 +35,22 @@ import { BookingComponent } from './views/booking/booking.component';
 import { DatePipe } from '@angular/common';
 import { MyBookingComponent } from './views/my-booking/my-booking.component';
 import { ProfileComponent } from './views/profile/profile.component';
-import { CancellationsComponent } from './views/cancellations/cancellations.component'; // Import DatePipe
+import { CancellationsComponent } from './views/cancellations/cancellations.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Footer1Component } from './layout/footer1/footer1.component';
 import { SearchHeaderComponent } from './layout/search-header/search-header.component';
 import { CitiesComponent } from './views/cities/cities.component';
 import { OrderModule } from 'ngx-order-pipe';
-import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BusinessHeaderComponent } from './layout/business-header/business-header.component';
 import { TravelAgentComponent } from './views/travel-agent/travel-agent.component';
+import { AgentLoginComponent } from './views/agent-login/agent-login.component';
+import { AgentHomeComponent } from './views/agent-home/agent-home.component';
+
 export function userFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http,'./assets/translate/','.json');
+  return new TranslateHttpLoader(http, './assets/translate/', '.json');
 }
 
 @NgModule({
@@ -67,7 +70,7 @@ export function userFactory(http: HttpClient): TranslateLoader {
     LoginComponent,
     RegisterComponent,
     PrivacyPolicyComponent,
-    TermsComponent,   
+    TermsComponent,
     HotelsListDetailsComponent,
     Header1Component,
     HotelsListsComponent,
@@ -80,21 +83,38 @@ export function userFactory(http: HttpClient): TranslateLoader {
     CitiesComponent,
     BusinessHeaderComponent,
     TravelAgentComponent,
+    AgentLoginComponent,
+    AgentHomeComponent,
   ],
   imports: [
-    BrowserModule,FormsModule,ReactiveFormsModule,MatDatepickerModule,MatFormFieldModule,MatNativeDateModule,BrowserAnimationsModule,MatSelectModule,
-    AppRoutingModule,MatButtonModule,MatInputModule,CarouselModule,CommonModule, NoopAnimationsModule,NgxPaginationModule,OrderModule ,  
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    AppRoutingModule,  
+    MatButtonModule,
+    MatInputModule,
+    CarouselModule,
+    CommonModule,
+    NoopAnimationsModule,
+    NgxPaginationModule,
+    OrderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: userFactory, // Corrected: useFactory instead of userFactory
-        deps: [HttpClient] // Specify dependencies if required
+        useFactory: userFactory, 
+        deps: [HttpClient] 
       }
     })
-    ],
+  ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi(),withFetch()),DatePipe
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {} 

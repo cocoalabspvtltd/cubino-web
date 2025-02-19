@@ -7,16 +7,65 @@
        
 @if(this.loginToken){
         <div class="form-container">
-          <h2>Enter your details</h2>
           <div class="success-banner">🎉 Cubino Hotel booking!</div>
+          <h2>Your details </h2>
+          
           <form>
-            <label for="full-name">Full Name</label>
+            <!-- <label for="full-name">Full Name</label>
             <input type="text" id="full-name" placeholder="Enter first and last name"  value="{{userData.user_details.name}}"/>
             <label for="email">Email Address</label>
             <input type="email" id="email" placeholder="name@abc.com" value="{{userData.user_details.email}}" />
             <label for="mobile-number">Mobile Number</label>
-            <input type="tel" id="mobile-number" placeholder="e.g. 1234567890" value="{{userData.user_details.phone_number}}"/>
+            <input type="tel" id="mobile-number" placeholder="e.g. 1234567890" value="{{userData.user_details.phone_number}}"/> -->
             <!-- <button type="button" disabled>Send Passcode</button> -->
+              <!-- If userData exists, display user details -->
+      <ng-container *ngIf="userData; else agentTemplate">
+        <label for="full-name">Full Name</label>
+        <input
+          type="text"
+          id="full-name"
+          placeholder="Enter first and last name"
+          [value]="userData.user_details.name"
+        />
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="name@abc.com"
+          [value]="userData.user_details.email"
+        />
+        <label for="mobile-number">Mobile Number</label>
+        <input
+          type="tel"
+          id="mobile-number"
+          placeholder="e.g. 1234567890"
+          [value]="userData.user_details.phone_number"
+        />
+      </ng-container>
+      <!-- If userData does not exist and userData1 exists, display agent details -->
+      <ng-template #agentTemplate>
+        <ng-container *ngIf="userData1">
+          <label for="full-name">Travel Agent</label>
+          <label for="full-name">Full Name</label>
+          <input
+            type="text"
+            id="full-name"
+            [value]="userData1.user.name"
+          />
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            [value]="userData1.user.email"
+          />
+          <label for="mobile-number">Mobile Number</label>
+          <input
+            type="tel"
+            id="mobile-number"
+            [value]="userData1.user.phone_number"
+          />
+        </ng-container>
+      </ng-template>
           </form>
         </div>
     

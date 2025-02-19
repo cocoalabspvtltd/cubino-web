@@ -287,15 +287,15 @@ p{
   background-color: #232524;
 }/* General row styling */
 .travel-categories {
-  margin-top: 150px;
-  padding: 20px;
+  margin-top: 50px;
+  //padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
  // background: linear-gradient(135deg, #f0f4f7, #d9e3ea);
   border-radius: 12px;
   //border: 1px solid #cfd8dc;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  //box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Horizontal rule styling */
@@ -335,7 +335,7 @@ p{
 /* Hover effects */
 .category-item:hover {
   color: #ffffff;
-  background-color: #00796b; /* Modern teal shade */
+  background-color: #707070; /* Modern teal shade */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   cursor: pointer;

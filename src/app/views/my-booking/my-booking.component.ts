@@ -43,11 +43,11 @@ export class MyBookingComponent {
     bookings(): void {  
       this.apiService.getBookedRooms().subscribe({
         next: (res: any) => {
-          console.log(this.hotels)
+          //console.log(this.hotels)
           this.loading = false;
           if (res.status_code === 200) {
               this.hotels = res.booked_rooms;
-            console.log(this.hotels )
+            //console.log(this.hotels )
            // window.location.reload();        
           } else {
            // this.errorMsg1 = res.message || 'Unknown error occurred.';
@@ -79,7 +79,22 @@ export class MyBookingComponent {
         }
       });
     }
-    
+    // Function to parse room_images JSON string into an array of strings
+  parseRoomImages(images: string): string[] {
+    try {
+      return JSON.parse(images) || [];
+    } catch (error) {
+      console.error('Error parsing room images:', error);
+      return [];
+    }
+  }
+
+  // Helper function to get the first image URL
+  getFirstRoomImage(images: string): string {
+    const parsedImages = this.parseRoomImages(images);
+    return parsedImages.length > 0 ? parsedImages[1] : '';
+  }
+ 
   }
   
 

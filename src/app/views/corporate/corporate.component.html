@@ -6,7 +6,6 @@
         <div class="left-section">
           <div class="overlay"></div>        
           <div class="content">
-            <hr>
             <p>Are you an individual business traveller? Book through Oravel Travel Solutions.</p>
             <hr>
             <h1>Unlock special prizes for your startup exclusively with Oravel Travel Solutions.</h1>
@@ -18,18 +17,33 @@
         <!-- Right Section with Form -->
         <div class="right-section">
           <h2>Get Started</h2>
-          <form>
-            <input type="text" placeholder="Name" required>
-            <input type="text" placeholder="Company" required>
-            <input type="email" placeholder="Email ID" required>
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <input type="text" formControlName="name" placeholder="Name" required>
+            <input type="text" formControlName="company" placeholder="Company" required>
+            <input type="email" formControlName="email" placeholder="Email ID" required>
             <div class="phone-group">
-              <span>+91</span>
-              <input type="tel" placeholder="Mobile" required>
+              <span> <select formControlName="selectedCountryCode" class="country-code-dropdown">
+                <option *ngFor="let country of countries" [value]="country.code">
+                  {{ country.name }} ({{ country.code }})
+                </option>
+              </select></span>
+              <input type="tel" formControlName="mobile" placeholder="Mobile" required>
             </div>
-            <input type="text" placeholder="City" required>
-            <button type="submit" class="submit-btn">Register Now</button>
+            <input type="text" formControlName="city" placeholder="City" required>
+            <button type="submit" class="submit-btn" [disabled]="registrationForm.invalid">Register Now</button>
           </form>
-          <a href="#" class="callback-link">Request Call Back</a>
+          <br>
+          @if (this.msg) {
+            <div  class="alert alert-success" role="alert">
+               <p style="color:#000">{{this.msg}}</p>
+             </div>
+           }
+           @if (this.errorMsg){
+             <div class="alert alert-danger" role="alert">
+               <p >{{this.errorMsg}}</p>
+             </div>
+           }
+          <!-- <a href="#" class="callback-link">Request Call Back</a> -->
         </div>
       </div>
 </section>

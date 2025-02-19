@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list-property',
-  templateUrl: './list-property.component.html',
-  styleUrl: './list-property.component.scss'
+  selector: 'app-agent-login',
+  templateUrl: './agent-login.component.html',
+  styleUrl: './agent-login.component.scss'
 })
-export class ListPropertyComponent {
-  myForm:any
-  submitted = false;
-  errorMsg: any;
+export class AgentLoginComponent {
+ loginForm: FormGroup;
+  isOtpSent: boolean = false;
   msg: any;
-
-  constructor(private fb: FormBuilder, private apiService: ApiService) {}
+  errorMsg:any
   countries = [
     { code: '+91', name: 'India' },
     { code: '+1', name: 'United States' },
@@ -62,49 +62,64 @@ export class ListPropertyComponent {
     { code: '+213', name: 'Algeria' },
     { code: '+91', name: 'India' }
   ];
-  ngOnInit(): void {
-    // Initialize the form with name, phone, and email fields with validations
-    this.myForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+  msg1: any;
+  errorMsg1: any;
+  data: any;
+  token: any;
+
+  constructor(private Apiservice: ApiService,private router: Router,private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      selectedCountryCode: ['+91'] 
+      otp: ['', Validators.required],
+      // selectedCountryCode: ['+91'] 
     });
   }
 
-  // Getter for easy access to form controls in the template
-  get f() {
-    return this.myForm.controls;
+  get mobile() {
+    return this.loginForm.get('mobile')!;
   }
 
-  onSubmit(): void {
-    this.submitted = true;
+  get otp() {
+    return this.loginForm.get('otp')!;
+  }
 
-    // Stop if the form is invalid
-    if (this.myForm.invalid) {
-      return;
-    }
 
-   
-    // Call your API service (for example, registration)
-    let data={ phone_number:  this.myForm.value.selectedCountryCode+ ' ' + this.myForm.value.phone_number,
-      email:this.myForm.value.email,name:this.myForm.value.name
-    }   
-    console.log('Form Data:', data);
-    this.apiService.listproperty(data).subscribe({
-      next: (res) => {
-        console.log('Registration success:', res);
-        if (res.status_code == 200) {         
-          this.msg = res.message; // Success message
-          this.myForm.reset();
-        }else{
-          this.errorMsg = res.message; // Error message from API
-        }
-      },
-      error: (err) => {
-        console.error('Registration error:', err);
-        // Optionally, display an error message to the user
+  onSubmit(): void {    
+    localStorage.clear();
+    this.msg ='';
+    this.errorMsg = '';
+    if (this.loginForm.valid) {
+      // alert('Login successful!');
+      let data={
+        //phone_number:this.loginForm.value.mobile,
+        email:this.loginForm.value.email,
+        password:this.loginForm.value.otp
       }
-    });
+      console.log('data',data)
+      this.Apiservice.agentlogin(data).subscribe({
+        next: (res) => {
+          console.log(res)
+           if (res.status_code== 200) {
+            this.token =res?.token;      
+            const arrayJson = JSON.stringify(res);
+            localStorage.setItem('agent', arrayJson);
+            localStorage.setItem('token', this.token || '');
+            localStorage.setItem('logged', 'true');            
+            this.errorMsg1 = '';
+            this.loginForm.reset();
+             this.router.navigate(['/hotels']);
+          } else {
+            this.msg1 ='';
+            this.errorMsg1 = res.message; // Error message from API
+          }
+        },
+        error: (err:any) => {
+          console.error('HTTP Error:', err.error.message);
+          this.errorMsg1 = err.error.message;
+        },
+      });
+    } else {
+      alert('Please check your inputs');
+    }
   }
 }

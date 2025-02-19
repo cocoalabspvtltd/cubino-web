@@ -1,87 +1,171 @@
 .popup-overlay {
-  
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80%;
-    // background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    background: url('/assets/img/hotel10.jpg') center center;
-    background-size: cover;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
-  }
 
-  
-  
-  /* Popup container */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background: url('/assets/img/hotel10.jpg') center center;
+  background-size: cover;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+}
+
+/* Popup container */
+.popup-container {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+}
+
+/* Close button */
+.popup-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Header styling */
+h2 {
+  font-size: 1.5rem;
+  font-family: "Inter", sans-serif;
+  margin-bottom: 10px;
+}
+
+.popup-divider {
+  width: 150px;
+  height: 3px;
+  background-color: rgb(14, 13, 13);
+  margin: 10px auto;
+  border: none;
+}
+
+/* Form styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.phone-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.country-code-dropdown {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.phone-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.submit-btn {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #e40046;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit-btn:hover {
+  background-color: #c3003d;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .popup-container {
-    background-color: #fff;
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    position: relative;
+    width: 95%;
+    padding: 15px;
   }
-
-  /* Close button */
-  .popup-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #666;
-  }
-
-  /* Header styling */
+  
   h2 {
-    font-size: 1.5rem;
-    font-family: "inter" !important;
-    margin-bottom: 10px;
+    font-size: 1.3rem;
   }
-
+  
   .popup-divider {
-    width: 60px;
-    height: 3px;
-    background-color: rgb(14, 13, 13);
-    margin: 10px auto;
-    border: none;
+    width: 120px;
   }
-
-  /* Form styling */
-  form {
-    display: flex;
-    flex-direction: column;
+  
+  .form-control, 
+  .country-code-dropdown, 
+  .phone-input {
+    font-size: 14px;
+    padding: 8px;
   }
-
-  input {
-    padding: 10px;
-    font-size: 15px;
-    font-family: "inter" !important;
-    margin-bottom: 15px;
-    border: 1px solid #bebbbb;
-    border-radius: 5px;
-  }
-
+  
   .submit-btn {
-    background-color: rgb(5, 5, 5);
-    color: #fff;
-    font-family: "inter" !important;
-    font-size: 1rem;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-size: 14px;
+    padding: 8px;
   }
+}
 
-  .submit-btn:hover {
-    background-color: rgb(8, 8, 8);
+@media (max-width: 480px) {
+  .popup-container {
+    padding: 10px;
   }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  .popup-close-btn {
+    font-size: 1.2rem;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .phone-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .country-code-dropdown {
+    width: 100%;
+  }
+  
+  .phone-input {
+    width: 100%;
+  }
+  
+  .form-control {
+    font-size: 13px;
+    padding: 7px;
+  }
+  
+  .submit-btn {
+    font-size: 13px;
+    padding: 7px;
+  }
+}

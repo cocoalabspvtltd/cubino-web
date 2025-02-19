@@ -48,6 +48,7 @@ hotelNames: any;
     this.todayDate = new Date().toISOString().split('T')[0];   
     this.cancel();
   }
+  
   cancel(): void {  
     this.apiService.getCancelledRooms().subscribe({
       next: (res: any) => {
@@ -55,10 +56,8 @@ hotelNames: any;
         console.log('Cancelled Rooms:', res);
         if (res.status_code === 200) {
           // Process the response if status is OK (example)
-          this.cancelledRooms= res.cancelled_rooms  // Assuming 'rooms' is part of the response
-          
+          this.cancelledRooms= res.cancelled_rooms  // Assuming 'rooms' is part of the response          
          console.log('Cancelled Rooms Type:', typeof this.cancelledRooms);
-
         } else {
           this.errorMsg = res.message || 'Failed to fetch cancelled rooms.';
           
@@ -88,4 +87,21 @@ hotelNames: any;
       // }
    
   }
+
+    // Function to parse room_images JSON string into an array of strings
+    parseRoomImages(images: string): string[] {
+      try {
+        return JSON.parse(images) || [];
+      } catch (error) {
+        console.error('Error parsing room images:', error);
+        return [];
+      }
+    }
+  
+    // Helper function to get the first image URL
+    getFirstRoomImage(images: string): string {
+      const parsedImages = this.parseRoomImages(images);
+      return parsedImages.length > 0 ? parsedImages[1] : '';
+    }
+   
 }
