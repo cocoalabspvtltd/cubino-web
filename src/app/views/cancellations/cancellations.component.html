@@ -1,44 +1,46 @@
-<app-header1></app-header1>
+<app-header></app-header>
 
 <div class="container">
-  <section class="hotel-container" *ngIf="cancelledRooms.length > 0">
-    <!-- Left Column: Filters Section (can be added later) -->
-    
+  <section class="hotel-container">
+    <!-- Right Column: Hotel Results Section -->
     <div class="right-column">
-      <h5 id="h5">Cancelled Hotels</h5>
-      
-      <div class="card" *ngFor="let hotel of cancelledRooms | paginate: { itemsPerPage: itemsPerPage, currentPage: page } " >
-        <div class="row" >
-          <div class="col-md-3">
-            <div class="hotel-img">
-              <!-- Display only the first image from the room_images array -->
-              <img [src]="'https://cocoalabs.in/Cubino/storage/app/public/' + getFirstRoomImage(hotel.room.room_images)" alt="Room Image">
+      <h5>Cancelled Hotels</h5>
+
+      <!-- Check if hotels data is available -->
+      <div *ngIf="cancelledRooms.length > 0; else noData">
+        <div class="card" *ngFor="let hotel of cancelledRooms | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="hotel-img">
+                <img [src]="'https://cocoalabs.in/Cubino/storage/app/public/' + getFirstRoomImage(hotel.room.room_images)" alt="Room Image">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="hotel-info">
+                <h5 class="hotel-name">{{ hotel.room.hotel.name }}</h5>
+                <p class="hotel-address">{{ hotel.room.hotel.address }}</p>
+                <p class="price"><span class="price-value">{{ hotel.total_amount }}</span></p>
+                <p>Booked Date: {{ hotel.start_date | date: 'dd-MM-yyyy' }}</p>
+                <p><span class="badge-info">{{ hotel.status }}</span></p>
+              </div>
             </div>
           </div>
-          <div class="col-md-7">
-            <div class="hotel-info">
-              <h5 class="hotel-name">{{ hotel.room.hotel.name }}</h5>
-              <p class="hotel-address">{{ hotel.room.hotel.address }}</p>
-              <p class="price">
-                <span class="price-value">{{ hotel.room.price || 'Price not available' }}</span>
-              </p>
-              <p>Booked Date: {{ hotel.start_date | date: 'dd-MM-yyyy' }}</p>
-              <p><span class="badge-danger">{{ hotel.status }}</span></p>
-            </div>
-          </div>                
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-container" *ngIf="cancelledRooms.length > itemsPerPage">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
       </div>
-      
-  <!-- No rooms found -->
-  <div *ngIf="errorMsg1" style="text-align: center; margin-top: 30px;margin-bottom: 30px; color: #000; background-color: rgb(240, 228, 190); padding: 10px; width: 70%; margin-left: auto; margin-right: auto;">
-    <p  style="text-align: center; color: #000; ">{{ errorMsg1 }}</p>
-  </div>
+
+      <!-- No Data Message -->
+      <ng-template #noData>
+        <div style="text-align: center; margin-top: 30px; margin-bottom: 30px; color: #000; background-color: rgb(240, 228, 190); padding: 10px; width: 70%; margin-left: auto; margin-right: auto;">
+          <p>{{errorMsg1}}</p>
+        </div>
+      </ng-template>
     </div>
   </section>
-
-  <!-- Pagination controls -->
-  <div class="pagination-container"  *ngIf="cancelledRooms.length > 2">
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
-  </div>
 </div>
-<!-- <app-footer1></app-footer1> -->
+
+<app-footer></app-footer>

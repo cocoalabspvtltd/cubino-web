@@ -1,62 +1,53 @@
 <app-header></app-header>
-
 <section id="section">
     <div class="container">
-        <!-- Left Section with Background -->
         <div class="left-section">
           <div class="overlay"></div>
-          <div class="content">
-            <h1>Effortless Access to Your Bookings with Cubino</h1>
-            <p>Log in to Cubino and take control of your hotel management. Whether it's tracking reservations, streamlining check-ins, or ensuring a seamless experience for your guests, Cubino brings everything you need to your fingertips. Simplify your booking process and elevate your hospitality, all in one intuitive platform.</p>
-            <button class="help-button" routerLink="/contact">Need help? Connect with your dedicated support manager</button>
+            <div class="content">
+              <h1>Effortless Access to Your Bookings with Cubino</h1>
+              <p>Log in to Cubino and take control of your hotel management. Whether it's tracking reservations, streamlining check-ins, or ensuring a seamless experience for your guests, Cubino brings everything you need to your fingertips. Simplify your booking process and elevate your hospitality, all in one intuitive platform.</p>
+              <button class="help-button" routerLink="/contact">Need help? Connect with your dedicated support manager</button>
+            </div>
           </div>
-        </div>
-    
-        <!-- Right Section with Form -->
-      <div class="right-section">
-  <h2 class="form-title">Travel Agent Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
- 
-    <div class="form-group">
-      <input
-        type="email"
-        formControlName="email"
-        class="input-field"
-        placeholder="Enter Email"
-        required
-      />
-      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
-        Please enter a valid email.
-      </div>
+          <div class="right-section">
+            <h2 class="form-title">Travel Agent Login</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form"> 
+              <div class="form-group">
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="input-field"
+                  placeholder="Enter Email"
+                  required
+                />
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+                  Please enter a valid email.
+                </div>
+              </div>
+              <div class="otp-group" > 
+                <input
+                  type="password"
+                  id="otp-input"
+                  formControlName="otp"
+                  class="input-field"
+                  placeholder="Enter Password"
+                  maxlength="15"
+                />
+                <div *ngIf="otp.invalid && otp.touched" class="error-message">
+                  Enter a valid 4-digit OTP.
+                </div>
+                <div class="otp-actions">
+                  
+                  <button type="submit" class="submit-btn">
+                    Submit
+                  </button>
+                </div>
+                <div *ngIf="this.errorMsg1" class="alert alert-danger" role="alert">
+                  <p>{{ this.errorMsg1 }}</p>
+                </div>  
+              </div>
+            </form>
+          </div>
     </div>
-    <div class="otp-group" > 
-      <input
-        type="password"
-        id="otp-input"
-        formControlName="otp"
-        class="input-field"
-        placeholder="Enter Password"
-        maxlength="15"
-      />
-      <div *ngIf="otp.invalid && otp.touched" class="error-message">
-        Enter a valid 4-digit OTP.
-      </div>
-      <div class="otp-actions">
-        
-        <button type="submit" class="submit-btn">
-          Submit
-        </button>
-      </div>
-      <div *ngIf="this.errorMsg1" class="alert alert-danger" role="alert">
-        <p>{{ this.errorMsg1 }}</p>
-      </div>  
-    </div>
-  </form>
-
-  
-</div>
-
-      </div>
 </section>
-
-  <app-footer></app-footer>
+<app-footer></app-footer>

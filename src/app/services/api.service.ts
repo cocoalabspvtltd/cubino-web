@@ -139,13 +139,11 @@ export class ApiService {
     return this.http.get<any>(`${this.BASE_URL}/api/cancelled-rooms`, this.getHeaders())
       .pipe(catchError(this.handleError));
   }
-
   // Cubino for Business
   public business(data: any): Observable<any> {
     return this.http.post<any>(`${this.BASE_URL}/api/register/bussiness-contact`, data, this.getHeaders())
       .pipe(catchError(this.handleError));
   }
-
   // Cubino for Travel Agent Register
   public travelAgent(data: any): Observable<any> {
     return this.http.post<any>(`${this.BASE_URL}/api/register/agent`, data, this.getHeaders())
@@ -162,42 +160,47 @@ export class ApiService {
   return this.http.post<any>(`${this.BASE_URL}/api/property-enquiry`, data, this.getHeaders())
     .pipe(catchError(this.handleError));
 }
-  // Handle Errors
-  private handleError = (error: HttpErrorResponse) => {
-    let errorMessage = 'An unknown error occurred!';
-    
-    // Check if ErrorEvent is defined (for SSR compatibility)
-    if (typeof ErrorEvent !== 'undefined' && error.error instanceof ErrorEvent) {
-      errorMessage = `Client Error: ${error.error.message}`;
-    } else {
-      switch (error.status) {
-        case 401:
-          errorMessage = 'Unauthorized access. Redirecting to login page...';
-          console.error(errorMessage);
-          //this.router.navigate(['/login']);
-          break;
-        case 404:
-          errorMessage = error.error.message || 'Resource not found.';
-          break;
-        case 422:
-          errorMessage = 'Validation failed: ';
-          if (error.error.errors) {
-            Object.entries(error.error.errors).forEach(([field, messages]) => {
-              errorMessage += `\n${field}: ${(messages as string[]).join(', ')}`;
-            });
-          } else {
-            errorMessage += error.error.message || 'Invalid input.';
-          }
-          break;
-        case 500:
-          errorMessage = 'Internal Server Error. Please try again later.';
-          break;
-        default:
-          errorMessage = error.error.message || `Error Code: ${error.status}\nMessage: ${error.message}`;
-          break;
-      }
+// AGENT
+public agentearnings(agentId: any): Observable<any> {
+  return this.http.get<any>(`${this.BASE_URL}/api/agent/earnings/`+agentId,  this.getHeaders())
+    .pipe(catchError(this.handleError));
+}
+
+
+
+
+private handleError = (error: HttpErrorResponse) => {
+  console.error(`API Error [${error.status}]:`, error);
+  let errorMessage = 'An unknown error occurred!';
+
+  if (typeof ErrorEvent !== 'undefined' && error.error instanceof ErrorEvent) {
+    errorMessage = `Client Error: ${error.error.message}`;
+  } else {
+    switch (error.status) {
+      case 401:
+        errorMessage = 'Unauthorized access. Redirecting to login page...';
+        this.router.navigate(['/login']);
+        break;
+      case 404:
+        errorMessage = error.error.message || 'Resource not found.';
+        break;
+      case 422:
+        errorMessage = error.error.message || 'Validation error.';
+        if (error.error.errors) {
+          errorMessage += Object.entries(error.error.errors)
+            .map(([field, messages]) => `\n${field}: ${(messages as string[]).join(', ')}`)
+            .join('');
+        }
+        break;
+      case 500:
+        errorMessage = 'Internal Server Error. Please try again later.';
+        break;
+      default:
+        errorMessage = error.error.message || `Error Code: ${error.status}\nMessage: ${error.message}`;
+        break;
     }
-    
-    return throwError(() => new Error(errorMessage));
   }
+  return throwError(() => new Error(errorMessage));
+};
+
 }

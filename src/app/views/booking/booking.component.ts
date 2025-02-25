@@ -26,6 +26,7 @@ export class BookingComponent {
   room_id: any;
   agent:any
   userData1: any;
+  roomprice: any;
 
    constructor(
       private apiService: ApiService,private location: Location,private datePipe: DatePipe,private storageService: StorageServiceService,
@@ -35,7 +36,6 @@ export class BookingComponent {
      this.loginToken =  this.storageService.getItem('token');
      this.user=  this.storageService.getItem('user');
      this.agent = this.storageService.getItem('agent');
-
      // Parse the data if available, otherwise set to null
      this.userData = this.user ? JSON.parse(this.user) : null;
      this.userData1 = this.agent ? JSON.parse(this.agent) : null; 
@@ -48,17 +48,17 @@ export class BookingComponent {
     this.roomTitle                 = this.hotelData.hotel_name;
     this.roomDescription           = this.hotelData.description;
     this.aminities                 = this.hotelData.aminities;
-    this.hotel_policies            = this.hotelData.hotel_policies;   
-     this.price                    = this.hotelData.price;  
+    this.hotel_policies            = this.hotelData.hotel_policies;  
+    this.roomprice= this.hotelData.price.replace(/[^\d.]/g, "");  
+    const currencySymbol = this.hotelData.price.charAt(0);     
      this.date                     = this.hotelData.date;  
      this.guestCount               = this.hotelData.guestCount;
      this.roomCount                = this.hotelData.roomCount;
+     this.price                     =`${currencySymbol}${this.roomCount* this.roomprice}`;
      this.start_date               =  this.hotelData.start_date
      this.end_date                 =  this.hotelData.end_date
      this.room_id                  =  this.hotelData.room_id
   }
-
-
   goBack() {
     this.location.back();
   }
@@ -86,7 +86,7 @@ export class BookingComponent {
     }
 
     // Invalid date format
-    console.error('Invalid date format:', dateString);
+   // console.error('Invalid date format:', dateString);
     return null;
   }
   book(){ 
@@ -103,9 +103,8 @@ export class BookingComponent {
     const checkinFormatted = this.parseDate(this.start_date);
    const checkoutFormatted = this.parseDate(this.end_date);
     if (checkinFormatted && checkoutFormatted) {
-      const formattedCheckin = this.formatDate(checkinFormatted);
-      const formattedCheckout = this.formatDate(checkoutFormatted);
-    
+        const formattedCheckin = this.formatDate(checkinFormatted);
+        const formattedCheckout = this.formatDate(checkoutFormatted);    
       let data = {
         room_id: this.room_id,
         start_date: formattedCheckin,
@@ -113,11 +112,12 @@ export class BookingComponent {
         status: 'confirmed',
         guest_count: this.guestCount,
         room_count: this.roomCount,
+        total_amount:this.roomCount* this.roomprice   
       };   
-     console.log('data',data)
+     //console.log('data',data)
       this.apiService.booking(data).subscribe({
         next: (res: any) => {
-          console.log('booking',res)
+         // console.log('booking',res)
           if (res.status_code === 201) {
                this.router.navigateByUrl('/bookings')
           }

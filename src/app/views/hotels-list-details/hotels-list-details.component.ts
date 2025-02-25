@@ -54,17 +54,20 @@ export class HotelsListDetailsComponent {
   details(){
     const hotelData = this.storageService.getItem('hotel');
     this.hotelData = hotelData ? JSON.parse(hotelData) : null;
-    console.log('this.hotelData:', this.hotelData);
+   // console.log('this.hotelData:', this.hotelData);
     this.roomTitle                 = this.hotelData.hotel_name;
     this.roomDescription           = this.hotelData.description;
     this.aminities                 = this.hotelData.amenities;
    // this.hotel_policies            = this.hotelData.hotel_policies;   
     const unsafePolicies = this.hotelData.hotel_policies;
     this.hotel_policies = this.sanitizer.bypassSecurityTrustHtml(unsafePolicies);
-     this.price                     = this.hotelData.price;  
+    let roomprice= this.hotelData.price.replace(/[^\d.]/g, "");  
+    const currencySymbol = this.hotelData.price.charAt(0);
      this.date                     = this.hotelData.date;  
      this.guestCount               = this.hotelData.guestCount;
      this.roomCount                = this.hotelData.roomCount; 
+     this.price                     =`${currencySymbol}${this.roomCount* roomprice}`;
+      //  console.log( this.price ,this.roomCount)
      this.start_date = this.parseDate(this.hotelData.start_date);
     this.end_date = this.parseDate(this.hotelData.end_date);
    this.images=this.hotelData.room_images;
@@ -89,7 +92,7 @@ export class HotelsListDetailsComponent {
     }
 
     // Invalid date format
-    console.error('Invalid date format:', dateString);
+   // console.error('Invalid date format:', dateString);
     return null;
   }
   getStars(rating: number): number[] {
@@ -101,7 +104,7 @@ export class HotelsListDetailsComponent {
     try {
       return JSON.parse(images) || [];
     } catch (error) {
-      console.error('Error parsing room images:', error);
+      //console.error('Error parsing room images:', error);
       return [];
     }
   }

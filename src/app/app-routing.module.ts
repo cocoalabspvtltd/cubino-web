@@ -24,6 +24,10 @@ import { TravelAgentComponent } from './views/travel-agent/travel-agent.componen
 import { AgentLoginComponent } from './views/agent-login/agent-login.component';
 import { AgentHomeComponent } from './views/agent-home/agent-home.component';
 
+
+
+
+
   const routes: Routes = [
     { path: '',                        component: HomeComponent },
     { path: 'index',                   component: HomeComponent },

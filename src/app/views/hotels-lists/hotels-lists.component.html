@@ -14,7 +14,49 @@
   
       <div [ngClass]="{ 'd-none': !showSearchBox, 'd-lg-block': true }">
         <div class="row" class="search-box">
-      <form class="inline-form row gx-2" [formGroup]="searchForm"  (ngSubmit)="onSearch()" >
+          <form class="inline-form row gx-2" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            <div class="form-group col-12 col-lg-auto">
+              <label for="location" class="form-label">Place</label>
+              <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location/Hotel Name" required />
+            </div>
+          
+            <div class="form-group col-12 col-lg-auto">
+              <label for="checkin" class="form-label">Check-in</label>
+              <input type="date" id="checkin" formControlName="checkin" class="form-control" [min]="todayDate" required />
+            </div>
+          
+            <div class="form-group col-12 col-lg-auto">
+              <label for="checkout" class="form-label">Check-out</label>
+              <input type="date" id="checkout" formControlName="checkout" class="form-control" [min]="todayDate" required />
+            </div>
+          
+            <div class="form-group col-12 col-lg-auto">
+              <label for="guests" class="form-label">Guests</label>
+              <select id="guests" formControlName="guests" class="form-control" (change)="onGuestsChange()" required>
+                <option value="" disabled selected>Select guests</option>
+                <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12]" [value]="i">{{ i }} Guest{{ i > 1 ? 's' : '' }}</option>
+              </select>
+            </div>
+          
+            <div class="form-group col-12 col-lg-auto">
+              <label for="rooms" class="form-label">Rooms</label>
+              <select id="rooms" formControlName="rooms" class="form-control" required>
+                <option value="" disabled selected>Select rooms</option>
+                <option *ngFor="let room of availableRooms" [value]="room.value">
+                  {{ room.label }}
+                </option>
+              </select>
+            </div>
+          
+            <div class="form-group col-12 col-lg-auto">
+              <button type="submit" class="btn btn-success" style="margin-top:25px;background-color: rgb(227, 232, 236);color:#000;border:none;padding:10px">
+                {{'Search'|translate}}
+              </button>
+            </div>
+          </form>
+          
+          
+      <!-- <form class="inline-form row gx-2" [formGroup]="searchForm"  (ngSubmit)="onSearch()" >
         <div class="form-group col-12 col-lg-auto">
           <label for="location" class="form-label">Place</label>
           <input type="text" id="location" formControlName="location" class="form-control" placeholder="Enter location/Hotel Name" required />
@@ -55,11 +97,11 @@
           </select>
         </div>
         <div class="form-group col-12 col-lg-auto">
-          <button type="submit" class="btn btn-success" [disabled]="searchForm.invalid" style="margin-top:25px;background-color: rgb(227, 232, 236);color:#000;border:none;padding:10px">
+          <button type="submit" class="btn btn-success"  style="margin-top:25px;background-color: rgb(227, 232, 236);color:#000;border:none;padding:10px">
            {{'Search'|translate}}
           </button>
         </div>
-      </form>
+      </form> -->
     </div>
     </div>
   </header>

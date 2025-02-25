@@ -24,7 +24,7 @@
                     <h5 class="hotel-name">{{ hotel.room.hotel.name }}</h5>
                     <p class="hotel-address">{{ hotel.room.hotel.address }}</p>
                     <p class="price">
-                      <span class="price-value">{{ hotel.room.price || 'Price not available' }}</span>
+                      <span class="price-value">{{ hotel.total_amount }}</span>
                     </p>
                     <!-- <p>Booked Date: {{ hotel.start_date | date: 'dd-MM-yyyy' }} <span>To</span> {{ hotel.end_date | date: 'dd-MM-yyyy' }}</p> -->
                     <p>Booked Date: {{ hotel.start_date | date: 'dd-MM-yyyy' }} </p>

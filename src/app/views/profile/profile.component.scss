@@ -1,119 +1,161 @@
-/* Container for the entire profile section */
+/* Global Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f7fb;
-    border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Form Container */
+.form-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 25px;
+  background: linear-gradient(135deg, #ffffff, #e3e3e3);
+  border-radius: 15px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Banner */
+.success-banner {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffaa2b;
+  margin-bottom: 20px;
+  background: rgba(45, 137, 239, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Profile Picture */
+.profile-picture-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-picture {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffaa2b;
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile-picture:hover {
+  transform: scale(1.1);
+}
+
+/* Travel Agent Icon */
+.travel-agent-icon {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  bottom: 5px;
+  right: -10px;
+  animation: pop 1s infinite alternate;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  background: #f2f2f2;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+input:focus {
+  background: #e6e6e6;
+  outline: none;
+}
+
+/* Earnings Section */
+.earnings-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, #508044, #7faa7a);
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.earnings-section h3 {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+.earnings-section p {
+  font-size: 16px;
+  color: #000;
+}
+
+/* Animation */
+@keyframes pop {
+  0% {
+    transform: scale(1);
   }
-  
-  /* Form container with background, padding, and border radius */
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
   .form-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    padding: 20px;
   }
   
-  /* Heading style */
-  h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Success banner style */
-  .success-banner {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-  }
-  
-  /* Label styles */
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    color: #555;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  /* Input field styles */
-  input {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-  }
-  
-  /* Focused input field styling */
-  input:focus {
-    border-color: #007bff;
-    outline: none;
-    background-color: #fff;
-  }
-  
-  /* Button styling */
-  button {
-    width: 100%;
-    padding: 15px;
-    font-size: 1.2rem;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  /* Button hover effect */
-  button:hover {
-    background-color: #218838;
-  }
-  
-  /* Form group styling */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Profile Picture Container */
-  .profile-picture-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Profile Picture styling */
   .profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #007bff;
+    width: 80px;
+    height: 80px;
   }
-  
-  /* Responsive styles */
-  @media screen and (max-width: 768px) {
-    .form-container {
-      padding: 20px;
-    }
-  
-    h2 {
-      font-size: 1.5rem;
-    }
-  
-    button {
-      font-size: 1rem;
-    }
+
+  .travel-agent-icon {
+    width: 28px;
+    height: 28px;
   }
+
+  .earnings-section {
+    padding: 10px;
+  }
+}
+.user-type-section {
+  /* Smaller but readable text */
+  font-weight: 600; /* Semi-bold for clarity */
+  color: #444; /* Slightly dark text */
+  background: #fcf8f8; /* Light gray background */
+  padding: 6px 10px; /* Adjusted padding */
+  border-radius: 6px; /* Softer rounded edges */
+  display: inline-block; /* Keeps it compact */
+  margin-top: 8px; /* Space from profile picture */
   
+}
+.user-type-section h3{
+  font-size: 16px !important; 
+  text-align: center;
+}

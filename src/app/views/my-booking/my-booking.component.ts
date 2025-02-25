@@ -39,11 +39,12 @@ export class MyBookingComponent {
       this.loading = true;  
       this.todayDate = new Date().toISOString().split('T')[0];   
       this.bookings();
+      
     }
     bookings(): void {  
       this.apiService.getBookedRooms().subscribe({
         next: (res: any) => {
-          //console.log(this.hotels)
+          console.log(res)
           this.loading = false;
           if (res.status_code === 200) {
               this.hotels = res.booked_rooms;
@@ -94,7 +95,5 @@ export class MyBookingComponent {
     const parsedImages = this.parseRoomImages(images);
     return parsedImages.length > 0 ? parsedImages[1] : '';
   }
- 
-  }
-  
+}
 

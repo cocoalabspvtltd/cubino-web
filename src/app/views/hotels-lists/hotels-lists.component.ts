@@ -23,7 +23,7 @@ export class HotelsListsComponent implements OnInit {
     hotelData: any;
     todayDate: any;
     searchForm: any;
-    availableRooms: { value: number, label: string }[] = [];
+    availableRooms: { value: number; label: string }[] = [];
     filterData: any;
     filterDatas: any;
     data: any;
@@ -47,8 +47,7 @@ export class HotelsListsComponent implements OnInit {
       private fb: FormBuilder,private datePipe: DatePipe,
       @Inject(PLATFORM_ID) private platformId: Object,
       public translate:TranslateService,private storageService: StorageServiceService
-    ) { }
-  
+    ) { }  
     ngOnInit(): void {
       this.imgUrl='https://cocoalabs.in/Cubino/storage/app/public'
       this.cityData =  this.storageService.getItem('state');    
@@ -73,8 +72,8 @@ export class HotelsListsComponent implements OnInit {
         location: ['', Validators.required],
         checkin: ['', Validators.required],
         checkout: ['', Validators.required],
-        rooms: [1, [Validators.required, Validators.min(1), Validators.max(4)]], // Rooms between 1 and 4
-        guests: [1, [Validators.required, Validators.min(1), Validators.max(12)]], // Guests between 1 and 12
+        rooms: [1, Validators.required], // Rooms between 1 and 4
+        guests: [1, Validators.required], // Guests between 1 and 12
       }); 
       this.storageService.removeItem('hotel');
       this.loadFilterData();
@@ -84,7 +83,7 @@ export class HotelsListsComponent implements OnInit {
      this.updateRoomOptions(1);
     
     }
-     private loadFilterData(): void {
+    private loadFilterData(): void {
       if (this.city=='' &&this.subcity=='') {
         this.data = {city:'', guest_limit: '',room_limit: '',start_date: '',end_date: '' };
       } else if (this.city=='' &&this.subcity!='') { // Ensure `this.subcity` and `this.subcity.name` are defined
@@ -125,32 +124,15 @@ export class HotelsListsComponent implements OnInit {
 
         }
       });
-     }
-    
-    // private initializeCity(): void {
-    //   this.cityData = localStorage.getItem('state');
-    //   if (this.cityData) {
-    //     try {
-    //       this.city = JSON.parse(this.cityData);
-    //       console.log('City:', this.city);
-    //     } catch (error) {
-    //       console.error('Failed to parse city data from localStorage:', error);
-    //     }
-    //   } else {
-    //     console.warn('No city data found in localStorage');
-    //   }
-    // }
-  
+    }      
     private stateSearch(): void {
       if (!this.city || !this.city.id) {
        // console.warn('City ID is missing. Cannot fetch hotel data.');
         return;
-      }
-  
+      }  
       const filterData = this.filterData;
       if (filterData) {
-        const { guests, rooms, checkin, checkout } = filterData;
-  
+        const { guests, rooms, checkin, checkout } = filterData;  
         this.data = {
           city: this.city.id, 
           guest_limit: guests, 
@@ -192,16 +174,9 @@ export class HotelsListsComponent implements OnInit {
       //   }
       // });
     }
-    // private formatDate(date: any): string {
-    //   if (!date) return '';
-    //   const formattedDate = new Date(date);
-    //   return formattedDate.toISOString().split('T')[0]; // YYYY-MM-DD
-    // }
-  
     private initializePagination(): void {
       this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-    }
-  
+    }  
     viewDetails(hotel: any): void {
       if (isPlatformBrowser(this.platformId)) {
        // console.log('View Details clicked for:', hotel);  
@@ -219,8 +194,7 @@ export class HotelsListsComponent implements OnInit {
       } else {
         //console.warn('LocalStorage is not available in this environment.');
       }
-    }
-  
+    }  
     bookNow(hotel: any): void {
       if (isPlatformBrowser(this.platformId)) {
        // console.log('View Details clicked for:', hotel);  
@@ -254,63 +228,56 @@ export class HotelsListsComponent implements OnInit {
     goToPage(page: number): void {
       if (page < 1 || page > this.totalPages) return;
       this.currentPage = page;
-    }
-  
+    }  
     onSubmit(): void {
       if (this.searchForm.valid) {
        // console.log('Form Submitted:', this.searchForm.value);
       }
     }
-
     getStars(rating: number): number[] {
       const numStars = Number(rating); // Convert rating to number
     return new Array(numStars).fill('⭐');
     }
-
-
-
-
 //======================search=========================
-onGuestsChange(): void {
-  let guests = this.searchForm.get('guests')?.value;
-  // Ensure guests does not exceed 12
-  if (guests > 12) {
-    guests = 12;
-    this.searchForm.get('guests')?.setValue(guests); // Automatically set value to 12 if more than 12
-  }
-  this.updateRoomOptions(guests);
-}
-
+// onGuestsChange(): void {
+//   let guests = this.searchForm.get('guests')?.value;
+//   // Ensure guests does not exceed 12
+//   if (guests > 12) {
+//     guests = 12;
+//     this.searchForm.get('guests')?.setValue(guests); // Automatically set value to 12 if more than 12
+//   }
+//   this.updateRoomOptions(guests);
+// }
 // Update room options dynamically based on guest count
-updateRoomOptions(guests: number): void {
-  // Calculate the minimum number of rooms required
-  const roomsNeeded = Math.ceil(guests / 3); // 1 room holds up to 3 guests
+// updateRoomOptions(guests: number): void {
+//   // Calculate the minimum number of rooms required
+//   const roomsNeeded = Math.ceil(guests / 3); // 1 room holds up to 3 guests
   
-  // Limit the rooms to a maximum of 4
-  const maxRooms = Math.min(roomsNeeded, 4); // Max room count should be 4 rooms
+//   // Limit the rooms to a maximum of 4
+//   const maxRooms = Math.min(roomsNeeded, 4); // Max room count should be 4 rooms
   
-  // Set the available rooms array dynamically
-  this.availableRooms = Array.from({ length: maxRooms }, (_, i) => ({
-    value: i + 1,
-    label: `${i + 1} Room${i > 0 ? 's' : ''}`, // Singular/plural label based on the room number
-  }));
+//   // Set the available rooms array dynamically
+//   this.availableRooms = Array.from({ length: maxRooms }, (_, i) => ({
+//     value: i + 1,
+//     label: `${i + 1} Room${i > 0 ? 's' : ''}`, // Singular/plural label based on the room number
+//   }));
 
-  // Adjust the room count if it's higher than the available rooms
-  const currentRoomCount = this.searchForm.get('rooms')?.value;
-  if (currentRoomCount > maxRooms) {
-    this.searchForm.get('rooms')?.setValue(maxRooms); // Reset to max available rooms
-  }
-}
+//   // Adjust the room count if it's higher than the available rooms
+//   const currentRoomCount = this.searchForm.get('rooms')?.value;
+//   if (currentRoomCount > maxRooms) {
+//     this.searchForm.get('rooms')?.setValue(maxRooms); // Reset to max available rooms
+//   }
+// }
 formatDate(date: string): string {
   return this.datePipe.transform(date, 'dd-MM-yyyy') || '';
 }
 toggleSearchBox(): void {
   this.showSearchBox = !this.showSearchBox;
 }
-
 onSearch(): void {
+  this.hotels = [];
  /// console.log('Search Form Data:', this.searchForm.value);
-  if (this.searchForm.valid) {  
+  // if (this.searchForm.valid) {  
     //console.log('Search Form Data:', this.searchForm.value);
     const formData = this.searchForm.value;
     const checkinFormatted = this.formatDate(formData.checkin);
@@ -318,20 +285,19 @@ onSearch(): void {
    // this.data={ city:'',guest_limit:this.searchForm.value.guests,room_limit:this.searchForm.value.rooms,  start_date:'', end_date:'' ,search:this.searchForm.value.location } 
     // this.data= {search: this.searchForm.value.location,city:'',guest_limit:formData.guests,room_limit:formData.rooms,start_date:checkinFormatted,end_date:checkoutFormatted}
    // console.log('search data',this.data)
-    if(this.searchForm.value.location){
-      this.data={ city:'',guest_limit:this.searchForm.value.guests,room_limit:this.searchForm.value.rooms,  start_date:checkinFormatted, end_date: checkoutFormatted  ,search:this.searchForm.value.location } 
-    }
+    // if(this.searchForm.value.location){
+       this.data={ city:'',guest_limit:this.searchForm.value.guests,room_limit:this.searchForm.value.rooms,  start_date:checkinFormatted, end_date: checkoutFormatted  ,search:this.searchForm.value.location } 
+    //}
     this.apiService.getRooms(this.data).subscribe({
       next: (res: any) => {
-        //console.log('search',res)
+        console.log('search',res)
         this.loading = false;
         if (res.status_code === 200) {
           this.hotels = res.rooms|| [];           
           this.guest_count=res.guest_count;
           this.room_limit=res.room_count;
           this.start_date=res.start_date;
-          this.end_date=res.start_date;
-          
+          this.end_date=res.start_date;          
         } else {
           this.errorMsg1 = res.message || 'Unknown error occurred.';
         }
@@ -342,9 +308,30 @@ onSearch(): void {
         this.errorMsg1 = err.message ? err.message.replace('Error:', '').trim() : 'No data found';
       }
     });
-  } else {
+  //} else {
    // console.log('Form is invalid');
-  }
+ // }
 }
-  }
+onGuestsChange(): void {
+  let guests = this.searchForm.get('guests')?.value;
   
+  // Ensure guests are between 1 and 12
+  guests = Math.min(Math.max(guests, 1), 12);
+  this.searchForm.get('guests')?.setValue(guests);
+
+  this.updateRoomOptions(guests);
+}
+updateRoomOptions(guests: number): void {
+  const minRooms = Math.ceil(guests / 3); // Minimum required rooms
+  const maxRooms = guests; // Max rooms (if 2 guests want 2 rooms)
+
+  this.availableRooms = Array.from({ length: maxRooms }, (_, i) => ({
+    value: i + 1,
+    label: `${i + 1} Room${i > 0 ? 's' : ''}`,
+  }));
+
+  // Set default room count to minimum required
+  this.searchForm.get('rooms')?.setValue(minRooms);
+}
+}
+

@@ -48,6 +48,7 @@ import { BusinessHeaderComponent } from './layout/business-header/business-heade
 import { TravelAgentComponent } from './views/travel-agent/travel-agent.component';
 import { AgentLoginComponent } from './views/agent-login/agent-login.component';
 import { AgentHomeComponent } from './views/agent-home/agent-home.component';
+import { AgentEarningsComponent } from './views/agent-earnings/agent-earnings.component';
 
 export function userFactory(http: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(http, './assets/translate/', '.json');
@@ -85,6 +86,7 @@ export function userFactory(http: HttpClient): TranslateLoader {
     TravelAgentComponent,
     AgentLoginComponent,
     AgentHomeComponent,
+    AgentEarningsComponent,
   ],
   imports: [
     BrowserModule,

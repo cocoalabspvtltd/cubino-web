@@ -1,48 +1,35 @@
 <app-header1></app-header1>
 <section>
     <button (click)="goBack()" class="back-button">⬅ Back</button>
-
     <div class="container">
-        <!-- Form Section -->
-       
-@if(this.loginToken){
+      @if(this.loginToken){
         <div class="form-container">
           <div class="success-banner">🎉 Cubino Hotel booking!</div>
-          <h2>Your details </h2>
-          
-          <form>
-            <!-- <label for="full-name">Full Name</label>
-            <input type="text" id="full-name" placeholder="Enter first and last name"  value="{{userData.user_details.name}}"/>
+          <h2>Your details </h2>          
+          <form>           
+          <ng-container *ngIf="userData; else agentTemplate">
+            <label for="full-name">Full Name</label>
+              <input
+                type="text"
+                id="full-name"
+                placeholder="Enter first and last name"
+                [value]="userData.user_details.name"
+              />
             <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="name@abc.com" value="{{userData.user_details.email}}" />
-            <label for="mobile-number">Mobile Number</label>
-            <input type="tel" id="mobile-number" placeholder="e.g. 1234567890" value="{{userData.user_details.phone_number}}"/> -->
-            <!-- <button type="button" disabled>Send Passcode</button> -->
-              <!-- If userData exists, display user details -->
-      <ng-container *ngIf="userData; else agentTemplate">
-        <label for="full-name">Full Name</label>
-        <input
-          type="text"
-          id="full-name"
-          placeholder="Enter first and last name"
-          [value]="userData.user_details.name"
-        />
-        <label for="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="name@abc.com"
-          [value]="userData.user_details.email"
-        />
-        <label for="mobile-number">Mobile Number</label>
-        <input
-          type="tel"
-          id="mobile-number"
-          placeholder="e.g. 1234567890"
-          [value]="userData.user_details.phone_number"
-        />
-      </ng-container>
-      <!-- If userData does not exist and userData1 exists, display agent details -->
+              <input
+                type="email"
+                id="email"
+                placeholder="name@abc.com"
+                [value]="userData.user_details.email"
+              />
+              <label for="mobile-number">Mobile Number</label>
+              <input
+                type="tel"
+                id="mobile-number"
+                placeholder="e.g. 1234567890"
+                [value]="userData.user_details.phone_number"
+              />
+          </ng-container>   
       <ng-template #agentTemplate>
         <ng-container *ngIf="userData1">
           <label for="full-name">Travel Agent</label>
@@ -66,35 +53,27 @@
           />
         </ng-container>
       </ng-template>
-          </form>
+      </form>
         </div>
-    
-        <!-- Booking Details Section -->
         <div class="details-container">
           <h2>{{  this.roomTitle }}</h2>
-          <div class="card">
-            <!-- <p><strong>1 Night</strong></p> -->
+          <div class="card">         
             <p>📅| Room : {{roomCount}}, Guest: {{guestCount}}</p>
             <p><strong>Classic</strong></p>
-            <div class="price-summary">
-              <!-- <p>Room price for</p>
-              <p>Instant Discount:</p>
-              <p>60% Coupon Discount: </p> -->
+            <div class="price-summary">             
               <p class="payable">Payable Amount:{{price}}</p>
-            </div>
-            <!-- <div class="highlight-red">⚡ 4 people booked this hotel in the last 1 hour</div> -->
+            </div>         
             <button type="button" (click)="book()">Book Now</button> 
           </div>
         </div>
       }
       @else {
         <div class="login-prompt">
-          <h3>Welcome to our booking system!</h3>
-          <p>To complete your booking and enjoy exclusive offers, please log in to your account.</p>
-          <button routerLink="/login" class="login-button">Log In Now</button>
-      </div>
+            <h3>Welcome to our booking system!</h3>
+            <p>To complete your booking and enjoy exclusive offers, please log in to your account.</p>
+            <button routerLink="/login" class="login-button">Log In Now</button>
+        </div>
       }
-      </div>
-    
+    </div>    
 </section>
 
